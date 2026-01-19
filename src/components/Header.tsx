@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import trufiLogo from "@/assets/trufi_logo.png";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -9,11 +10,8 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
       <div className="container flex items-center justify-between h-16 md:h-20">
         {/* Logo */}
-        <a href="#" className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-xl bg-gradient-hero flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-xl">T</span>
-          </div>
-          <span className="text-xl font-bold text-foreground">TRUFI</span>
+        <a href="#" className="flex items-center">
+          <img src={trufiLogo} alt="TRUFI - Confianza Inmediata" className="h-10 md:h-12 w-auto" />
         </a>
 
         {/* Desktop Navigation */}

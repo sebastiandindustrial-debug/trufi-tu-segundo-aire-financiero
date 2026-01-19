@@ -1,4 +1,5 @@
 import { MapPin, Phone, Mail } from "lucide-react";
+import trufiLogo from "@/assets/trufi_logo.png";
 
 const Footer = () => {
   return (
@@ -7,12 +8,7 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2 space-y-4">
-            <div className="flex items-center gap-2">
-              <div className="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-                <span className="text-primary-foreground font-bold text-xl">T</span>
-              </div>
-              <span className="text-xl font-bold">TRUFI</span>
-            </div>
+            <img src={trufiLogo} alt="TRUFI - Confianza Inmediata" className="h-12 w-auto" />
             <p className="text-primary-foreground/70 max-w-sm text-sm leading-relaxed">
               Reincorporamos personas al sistema financiero con créditos de libranza 
               seguros, transparentes y con tecnología de punta.
