@@ -5,7 +5,7 @@ const CTASection = () => {
   return (
     <section className="py-20 md:py-28 bg-background relative overflow-hidden">
       {/* Background decoration */}
-      <div className="absolute inset-0 bg-gradient-to-br from-trufi-emerald-light via-background to-trufi-gold-light opacity-40" />
+      <div className="absolute inset-0 bg-gradient-to-br from-trufi-purple-light via-background to-trufi-gold-light opacity-40" />
       
       <div className="container relative z-10">
         <div className="max-w-4xl mx-auto">

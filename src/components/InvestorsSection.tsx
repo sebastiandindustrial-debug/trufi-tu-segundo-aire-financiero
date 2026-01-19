@@ -26,7 +26,7 @@ const features = [
 
 const InvestorsSection = () => {
   return (
-    <section id="inversionistas" className="py-20 md:py-28 bg-trufi-navy text-primary-foreground relative overflow-hidden">
+    <section id="inversionistas" className="py-20 md:py-28 bg-trufi-purple-dark text-primary-foreground relative overflow-hidden">
       {/* Background pattern */}
       <div className="absolute inset-0 opacity-10">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary rounded-full blur-3xl" />

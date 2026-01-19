@@ -6,89 +6,94 @@
 
 @layer base {
   :root {
-    /* TRUFI Brand Colors - Confianza y Calidez */
-    --background: 150 20% 98%;
-    --foreground: 160 30% 15%;
+    /* TRUFI Brand Colors - Púrpura Corporativo #413659 */
+    --background: 0 0% 99%;
+    --foreground: 259 25% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 160 30% 15%;
+    --card-foreground: 259 25% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 160 30% 15%;
+    --popover-foreground: 259 25% 20%;
 
-    /* Esmeralda - Confianza Financiera */
-    --primary: 162 63% 35%;
+    /* Púrpura Corporativo TRUFI #413659 */
+    --primary: 259 25% 28%;
     --primary-foreground: 0 0% 100%;
 
-    /* Dorado suave - Prosperidad */
+    /* Dorado suave - Acento */
     --secondary: 43 96% 56%;
-    --secondary-foreground: 160 30% 15%;
+    --secondary-foreground: 259 25% 20%;
 
-    --muted: 150 15% 93%;
-    --muted-foreground: 160 15% 45%;
+    --muted: 259 10% 95%;
+    --muted-foreground: 259 15% 45%;
 
-    --accent: 162 45% 92%;
-    --accent-foreground: 162 63% 25%;
+    --accent: 259 20% 94%;
+    --accent-foreground: 259 25% 25%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 150 20% 88%;
-    --input: 150 20% 88%;
-    --ring: 162 63% 35%;
+    --border: 259 15% 90%;
+    --input: 259 15% 90%;
+    --ring: 259 25% 28%;
 
     --radius: 0.75rem;
 
     /* Custom TRUFI tokens */
-    --trufi-emerald: 162 63% 35%;
-    --trufi-emerald-dark: 162 63% 25%;
-    --trufi-emerald-light: 162 45% 92%;
+    --trufi-purple: 259 25% 28%;
+    --trufi-purple-dark: 259 30% 20%;
+    --trufi-purple-light: 259 20% 94%;
     --trufi-gold: 43 96% 56%;
     --trufi-gold-light: 43 100% 95%;
-    --trufi-navy: 210 50% 20%;
     --trufi-warm: 30 60% 97%;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(162, 63%, 35%) 0%, hsl(162, 63%, 25%) 100%);
+    --gradient-hero: linear-gradient(135deg, hsl(259, 25%, 28%) 0%, hsl(259, 30%, 20%) 100%);
     --gradient-gold: linear-gradient(135deg, hsl(43, 96%, 56%) 0%, hsl(35, 90%, 50%) 100%);
-    --gradient-soft: linear-gradient(180deg, hsl(150, 20%, 98%) 0%, hsl(150, 15%, 95%) 100%);
 
     /* Shadows */
-    --shadow-soft: 0 4px 20px -4px hsl(162 63% 35% / 0.15);
-    --shadow-card: 0 8px 32px -8px hsl(160 30% 15% / 0.1);
-    --shadow-elevated: 0 20px 50px -12px hsl(160 30% 15% / 0.2);
+    --shadow-soft: 0 4px 20px -4px hsl(259 25% 28% / 0.15);
+    --shadow-card: 0 8px 32px -8px hsl(259 25% 20% / 0.1);
+    --shadow-elevated: 0 20px 50px -12px hsl(259 25% 20% / 0.2);
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 259 20% 30%;
+    --sidebar-primary: 259 25% 28%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 259 15% 95%;
+    --sidebar-accent-foreground: 259 25% 28%;
+    --sidebar-border: 259 15% 90%;
+    --sidebar-ring: 259 25% 28%;
   }
 
   .dark {
-    --background: 160 30% 8%;
-    --foreground: 150 20% 95%;
-    --card: 160 25% 12%;
-    --card-foreground: 150 20% 95%;
-    --popover: 160 25% 12%;
-    --popover-foreground: 150 20% 95%;
-    --primary: 162 55% 45%;
+    --background: 259 30% 8%;
+    --foreground: 259 10% 95%;
+    --card: 259 25% 12%;
+    --card-foreground: 259 10% 95%;
+    --popover: 259 25% 12%;
+    --popover-foreground: 259 10% 95%;
+    --primary: 259 20% 60%;
     --primary-foreground: 0 0% 100%;
     --secondary: 43 80% 50%;
-    --secondary-foreground: 160 30% 10%;
-    --muted: 160 20% 18%;
-    --muted-foreground: 150 15% 60%;
-    --accent: 162 40% 20%;
-    --accent-foreground: 162 55% 80%;
+    --secondary-foreground: 259 30% 10%;
+    --muted: 259 20% 18%;
+    --muted-foreground: 259 15% 60%;
+    --accent: 259 20% 20%;
+    --accent-foreground: 259 20% 80%;
     --destructive: 0 62% 50%;
     --destructive-foreground: 0 0% 100%;
-    --border: 160 20% 20%;
-    --input: 160 20% 20%;
-    --ring: 162 55% 45%;
-  }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-  }
-
-  html {
-    scroll-behavior: smooth;
+    --border: 259 20% 20%;
+    --input: 259 20% 20%;
+    --ring: 259 20% 60%;
+    --sidebar-background: 259 30% 10%;
+    --sidebar-foreground: 259 10% 95%;
+    --sidebar-primary: 259 25% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 259 20% 15%;
+    --sidebar-accent-foreground: 259 10% 95%;
+    --sidebar-border: 259 20% 15%;
+    --sidebar-ring: 259 25% 50%;
   }
 
   body {
@@ -100,11 +105,11 @@
 @layer utilities {
   .text-gradient {
     @apply bg-clip-text text-transparent;
-    background-image: var(--gradient-hero);
+    background-image: linear-gradient(135deg, hsl(259, 25%, 28%) 0%, hsl(259, 30%, 20%) 100%);
   }
 
   .bg-gradient-hero {
-    background: var(--gradient-hero);
+    background: linear-gradient(135deg, hsl(259, 25%, 28%) 0%, hsl(259, 30%, 20%) 100%);
   }
 
   .bg-gradient-gold {
