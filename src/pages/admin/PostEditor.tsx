@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Switch } from '@/components/ui/switch';
 import { usePost, useCreatePost, useUpdatePost } from '@/hooks/usePosts';
 import { useToast } from '@/hooks/use-toast';
-import { ArrowLeft, Loader2, Save, Eye } from 'lucide-react';
+import { ArrowLeft, Loader2, Save, Eye, HelpCircle } from 'lucide-react';
 import {
   Select,
   SelectContent,
@@ -16,6 +16,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+import ImageUploader from '@/components/ImageUploader';
 
 const categories = [
   'Planificación Financiera',
@@ -131,25 +137,43 @@ const PostEditor = () => {
         <div className="lg:col-span-2 space-y-6">
           <Card>
             <CardHeader>
-              <CardTitle>Contenido</CardTitle>
+              <CardTitle>Contenido del Artículo</CardTitle>
+              <CardDescription>
+                Completa los campos para crear o editar tu artículo. Los campos con * son obligatorios.
+              </CardDescription>
             </CardHeader>
-            <CardContent className="space-y-4">
+            <CardContent className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="title">Título *</Label>
+                <Label htmlFor="title" className="text-base font-semibold">
+                  Título del Artículo *
+                </Label>
                 <Input
                   id="title"
-                  placeholder="Título del artículo"
+                  placeholder="Ej: 5 Consejos para Mejorar tu Historial Crediticio"
                   value={formData.title}
                   onChange={(e) => setFormData({ ...formData, title: e.target.value })}
                   disabled={isLoading}
+                  className="text-lg"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="excerpt">Resumen</Label>
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="excerpt" className="text-base font-semibold">
+                    Resumen / Descripción Corta
+                  </Label>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="w-4 h-4 text-muted-foreground cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>Este texto aparecerá en las tarjetas del blog. Mantenlo breve (1-2 oraciones).</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
                 <Textarea
                   id="excerpt"
-                  placeholder="Breve descripción del artículo (opcional)"
+                  placeholder="Ej: Aprende estrategias prácticas para mejorar tu puntaje crediticio y acceder a mejores tasas."
                   value={formData.excerpt}
                   onChange={(e) => setFormData({ ...formData, excerpt: e.target.value })}
                   disabled={isLoading}
@@ -158,16 +182,38 @@ const PostEditor = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="content">Contenido (Markdown) *</Label>
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="content" className="text-base font-semibold">
+                    Cuerpo del Artículo *
+                  </Label>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="w-4 h-4 text-muted-foreground cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>Puedes usar formato Markdown: **negrita**, *cursiva*, # títulos, - listas</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
                 <Textarea
                   id="content"
-                  placeholder="Escribe el contenido del artículo en formato Markdown..."
+                  placeholder="Escribe aquí el contenido completo de tu artículo...
+
+Puedes usar:
+- **texto en negrita**
+- *texto en cursiva*
+- # Títulos grandes
+- ## Subtítulos
+- Listas con guiones"
                   value={formData.content}
                   onChange={(e) => setFormData({ ...formData, content: e.target.value })}
                   disabled={isLoading}
-                  rows={15}
-                  className="font-mono text-sm"
+                  rows={18}
+                  className="text-base leading-relaxed"
                 />
+                <p className="text-xs text-muted-foreground">
+                  Tip: Usa **texto** para negrita, *texto* para cursiva, y # para títulos.
+                </p>
               </div>
             </CardContent>
           </Card>
@@ -241,24 +287,12 @@ const PostEditor = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="cover_image">URL de Imagen de Portada</Label>
-                <Input
-                  id="cover_image"
-                  placeholder="https://ejemplo.com/imagen.jpg"
+                <Label className="text-base font-semibold">Imagen de Portada</Label>
+                <ImageUploader
                   value={formData.cover_image_url}
-                  onChange={(e) => setFormData({ ...formData, cover_image_url: e.target.value })}
+                  onChange={(url) => setFormData({ ...formData, cover_image_url: url })}
                   disabled={isLoading}
                 />
-                {formData.cover_image_url && (
-                  <img
-                    src={formData.cover_image_url}
-                    alt="Preview"
-                    className="w-full h-32 object-cover rounded-lg mt-2"
-                    onError={(e) => {
-                      (e.target as HTMLImageElement).style.display = 'none';
-                    }}
-                  />
-                )}
               </div>
             </CardContent>
           </Card>

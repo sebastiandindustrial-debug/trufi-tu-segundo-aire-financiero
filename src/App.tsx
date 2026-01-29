@@ -19,6 +19,7 @@ import ZonaPagos from "./pages/ZonaPagos";
 
 // Admin Pages
 import AdminLogin from "./pages/admin/AdminLogin";
+import AdminSetup from "./pages/admin/AdminSetup";
 import AdminLayout from "./pages/admin/AdminLayout";
 import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminPosts from "./pages/admin/AdminPosts";
@@ -47,8 +48,9 @@ const App = () => (
             <Route path="/blog" element={<Blog />} />
             <Route path="/zona-pagos" element={<ZonaPagos />} />
             
-            {/* Admin Login (Public) */}
+            {/* Admin Routes (Public) */}
             <Route path="/admin/login" element={<AdminLogin />} />
+            <Route path="/admin/setup" element={<AdminSetup />} />
             
             {/* Admin Routes (Protected) */}
             <Route
