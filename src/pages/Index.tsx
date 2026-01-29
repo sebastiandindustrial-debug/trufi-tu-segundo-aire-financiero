@@ -1,10 +1,12 @@
 import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
+import AudienceSegmentation from "@/components/AudienceSegmentation";
 import ValueProposition from "@/components/ValueProposition";
 import HowItWorks from "@/components/HowItWorks";
 import InvestorsSection from "@/components/InvestorsSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 
 const Index = () => {
   return (
@@ -12,12 +14,14 @@ const Index = () => {
       <Header />
       <main>
         <HeroSection />
+        <AudienceSegmentation />
         <ValueProposition />
         <HowItWorks />
         <InvestorsSection />
         <CTASection />
       </main>
       <Footer />
+      <WhatsAppButton />
     </div>
   );
 };
