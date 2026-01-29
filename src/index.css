@@ -4,30 +4,32 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans&display=swap");
+
 @layer base {
   :root {
     /* TRUFI Brand Colors - Púrpura Corporativo #413659 */
     --background: 0 0% 99%;
-    --foreground: 259 25% 20%;
+    --foreground: 259 24% 28%;
 
     --card: 0 0% 100%;
-    --card-foreground: 259 25% 20%;
+    --card-foreground: 259 24% 28%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 259 25% 20%;
+    --popover-foreground: 259 24% 28%;
 
     /* Púrpura Corporativo TRUFI #413659 */
     --primary: 259 25% 28%;
     --primary-foreground: 0 0% 100%;
 
     /* Dorado suave - Acento */
-    --secondary: 43 96% 56%;
+    --secondary: 169 36% 61%;
     --secondary-foreground: 259 25% 20%;
 
     --muted: 259 10% 95%;
-    --muted-foreground: 259 15% 45%;
+    --muted-foreground: 259 24% 28%;
 
-    --accent: 259 20% 94%;
+    --accent: 210 40% 96.0784%;
     --accent-foreground: 259 25% 25%;
 
     --destructive: 0 84% 60%;
