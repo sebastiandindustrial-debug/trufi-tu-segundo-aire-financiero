@@ -2,7 +2,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Button } from "@/components/ui/button";
-import { CreditCard, Smartphone, Building2, QrCode, Shield, Clock, HelpCircle } from "lucide-react";
+import { usePaymentLink } from "@/hooks/useSettings";
+import { CreditCard, Smartphone, Building2, QrCode, Shield, Clock, HelpCircle, ExternalLink } from "lucide-react";
 
 const paymentMethods = [
   {
@@ -55,6 +56,14 @@ const faqs = [
 ];
 
 const ZonaPagos = () => {
+  const { data: paymentLink } = usePaymentLink();
+
+  const handleExternalPayment = () => {
+    if (paymentLink) {
+      window.open(paymentLink, '_blank', 'noopener,noreferrer');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -116,9 +125,13 @@ const ZonaPagos = () => {
                   placeholder="Ingresa tu número de cédula"
                   className="w-full px-4 py-3 rounded-xl border border-border bg-background text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary"
                 />
-                <Button variant="hero" className="w-full mt-4">
-                  Consultar Saldo
+                <Button variant="hero" className="w-full mt-4" onClick={handleExternalPayment}>
+                  <ExternalLink className="w-4 h-4 mr-2" />
+                  Ir a Pasarela de Pago Segura
                 </Button>
+                <p className="text-xs text-muted-foreground mt-2 text-center">
+                  Serás redirigido a una plataforma de pago certificada
+                </p>
               </div>
             </div>
 

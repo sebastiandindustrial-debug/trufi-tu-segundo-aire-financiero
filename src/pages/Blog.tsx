@@ -2,52 +2,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
 import { Button } from "@/components/ui/button";
-import { Play, BookOpen, Headphones, Calendar, Clock, ArrowRight } from "lucide-react";
-
-const featuredArticle = {
-  title: "Guía Completa: Cómo Planificar tu Retiro Financiero",
-  excerpt:
-    "Aprende las estrategias clave para asegurar una jubilación tranquila y sin preocupaciones económicas.",
-  category: "Planificación Financiera",
-  date: "15 de Enero, 2025",
-  readTime: "8 min de lectura",
-  image: "📊",
-};
-
-const articles = [
-  {
-    id: 1,
-    title: "5 Errores Comunes al Solicitar un Crédito de Libranza",
-    excerpt: "Evita estos errores frecuentes y obtén las mejores condiciones para tu crédito.",
-    category: "Créditos",
-    date: "10 Ene 2025",
-    readTime: "5 min",
-  },
-  {
-    id: 2,
-    title: "¿Qué es el Patrimonio Autónomo y cómo te protege?",
-    excerpt: "Entiende este mecanismo legal que garantiza la seguridad de tu inversión.",
-    category: "Educación",
-    date: "8 Ene 2025",
-    readTime: "6 min",
-  },
-  {
-    id: 3,
-    title: "Cómo Consolidar tus Deudas y Ahorrar Miles de Pesos",
-    excerpt: "Estrategias prácticas para unificar tus obligaciones y reducir intereses.",
-    category: "Ahorro",
-    date: "5 Ene 2025",
-    readTime: "7 min",
-  },
-  {
-    id: 4,
-    title: "Guía de Beneficios para Docentes del Sector Público",
-    excerpt: "Conoce todos los beneficios financieros disponibles para educadores.",
-    category: "Docentes",
-    date: "3 Ene 2025",
-    readTime: "4 min",
-  },
-];
+import { usePublishedPosts } from "@/hooks/usePosts";
+import { Play, BookOpen, Headphones, Calendar, Clock, ArrowRight, Loader2 } from "lucide-react";
 
 const podcasts = [
   {
@@ -71,6 +27,11 @@ const podcasts = [
 ];
 
 const Blog = () => {
+  const { data: posts, isLoading, error } = usePublishedPosts();
+
+  const featuredPost = posts?.[0];
+  const remainingPosts = posts?.slice(1, 5) || [];
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -95,79 +56,133 @@ const Blog = () => {
           </div>
         </section>
 
+        {/* Loading State */}
+        {isLoading && (
+          <section className="py-16">
+            <div className="container flex justify-center">
+              <Loader2 className="w-8 h-8 animate-spin text-primary" />
+            </div>
+          </section>
+        )}
+
+        {/* Error State */}
+        {error && (
+          <section className="py-16">
+            <div className="container text-center">
+              <p className="text-muted-foreground">No se pudieron cargar los artículos.</p>
+            </div>
+          </section>
+        )}
+
         {/* Featured Article */}
-        <section className="py-12 md:py-16">
-          <div className="container">
-            <h2 className="text-xl font-bold text-foreground mb-6">Artículo Destacado</h2>
-            <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-3xl overflow-hidden">
-              <div className="grid md:grid-cols-2 gap-0">
-                <div className="bg-primary/10 flex items-center justify-center p-12 md:p-16">
-                  <span className="text-8xl">{featuredArticle.image}</span>
-                </div>
-                <div className="p-6 md:p-10 flex flex-col justify-center">
-                  <span className="text-primary font-semibold text-sm mb-2">
-                    {featuredArticle.category}
-                  </span>
-                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
-                    {featuredArticle.title}
-                  </h3>
-                  <p className="text-muted-foreground mb-6">{featuredArticle.excerpt}</p>
-                  <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
-                    <span className="flex items-center gap-1">
-                      <Calendar className="w-4 h-4" />
-                      {featuredArticle.date}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock className="w-4 h-4" />
-                      {featuredArticle.readTime}
-                    </span>
+        {featuredPost && (
+          <section className="py-12 md:py-16">
+            <div className="container">
+              <h2 className="text-xl font-bold text-foreground mb-6">Artículo Destacado</h2>
+              <div className="bg-gradient-to-br from-primary/10 to-primary/5 border border-primary/20 rounded-3xl overflow-hidden">
+                <div className="grid md:grid-cols-2 gap-0">
+                  <div className="bg-primary/10 flex items-center justify-center p-12 md:p-16">
+                    {featuredPost.cover_image_url ? (
+                      <img
+                        src={featuredPost.cover_image_url}
+                        alt={featuredPost.title}
+                        className="w-full h-full object-cover rounded-xl"
+                      />
+                    ) : (
+                      <BookOpen className="w-24 h-24 text-primary/30" />
+                    )}
                   </div>
-                  <Button variant="hero" className="w-fit">
-                    Leer Artículo
-                    <ArrowRight className="w-4 h-4 ml-2" />
-                  </Button>
+                  <div className="p-6 md:p-10 flex flex-col justify-center">
+                    <span className="text-primary font-semibold text-sm mb-2">
+                      {featuredPost.category}
+                    </span>
+                    <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+                      {featuredPost.title}
+                    </h3>
+                    <p className="text-muted-foreground mb-6">
+                      {featuredPost.excerpt || featuredPost.content.substring(0, 150) + '...'}
+                    </p>
+                    <div className="flex items-center gap-4 text-sm text-muted-foreground mb-6">
+                      <span className="flex items-center gap-1">
+                        <Calendar className="w-4 h-4" />
+                        {new Date(featuredPost.created_at).toLocaleDateString('es-CO', {
+                          year: 'numeric',
+                          month: 'long',
+                          day: 'numeric',
+                        })}
+                      </span>
+                      <span className="flex items-center gap-1">
+                        <Clock className="w-4 h-4" />
+                        {Math.ceil(featuredPost.content.split(' ').length / 200)} min de lectura
+                      </span>
+                    </div>
+                    <Button variant="hero" className="w-fit">
+                      Leer Artículo
+                      <ArrowRight className="w-4 h-4 ml-2" />
+                    </Button>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-        </section>
+          </section>
+        )}
 
         {/* Articles Grid */}
         <section className="py-12 md:py-16 bg-muted/30">
           <div className="container">
             <div className="flex items-center justify-between mb-8">
               <h2 className="text-xl font-bold text-foreground">Últimos Artículos</h2>
-              <Button variant="ghost" className="text-primary">
-                Ver todos
-                <ArrowRight className="w-4 h-4 ml-1" />
-              </Button>
             </div>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {articles.map((article) => (
-                <article
-                  key={article.id}
-                  className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-elevated transition-shadow group cursor-pointer"
-                >
-                  <div className="bg-muted h-32 flex items-center justify-center">
-                    <BookOpen className="w-10 h-10 text-muted-foreground/50" />
-                  </div>
-                  <div className="p-5">
-                    <span className="text-xs font-semibold text-primary">{article.category}</span>
-                    <h3 className="font-bold text-foreground mt-1 mb-2 group-hover:text-primary transition-colors line-clamp-2">
-                      {article.title}
-                    </h3>
-                    <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                      {article.excerpt}
-                    </p>
-                    <div className="flex items-center gap-3 text-xs text-muted-foreground">
-                      <span>{article.date}</span>
-                      <span>•</span>
-                      <span>{article.readTime}</span>
+            {remainingPosts.length > 0 ? (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                {remainingPosts.map((article) => (
+                  <article
+                    key={article.id}
+                    className="bg-card border border-border rounded-2xl overflow-hidden hover:shadow-elevated transition-shadow group cursor-pointer"
+                  >
+                    <div className="bg-muted h-32 flex items-center justify-center">
+                      {article.cover_image_url ? (
+                        <img
+                          src={article.cover_image_url}
+                          alt={article.title}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <BookOpen className="w-10 h-10 text-muted-foreground/50" />
+                      )}
                     </div>
-                  </div>
-                </article>
-              ))}
-            </div>
+                    <div className="p-5">
+                      <span className="text-xs font-semibold text-primary">{article.category}</span>
+                      <h3 className="font-bold text-foreground mt-1 mb-2 group-hover:text-primary transition-colors line-clamp-2">
+                        {article.title}
+                      </h3>
+                      <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                        {article.excerpt || article.content.substring(0, 80) + '...'}
+                      </p>
+                      <div className="flex items-center gap-3 text-xs text-muted-foreground">
+                        <span>
+                          {new Date(article.created_at).toLocaleDateString('es-CO', {
+                            day: 'numeric',
+                            month: 'short',
+                            year: 'numeric',
+                          })}
+                        </span>
+                        <span>•</span>
+                        <span>{Math.ceil(article.content.split(' ').length / 200)} min</span>
+                      </div>
+                    </div>
+                  </article>
+                ))}
+              </div>
+            ) : !isLoading && (
+              <div className="text-center py-12 bg-card rounded-2xl border border-border">
+                <BookOpen className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
+                <h3 className="text-lg font-semibold text-foreground mb-2">Próximamente</h3>
+                <p className="text-muted-foreground">
+                  Estamos preparando contenido educativo de calidad para ti.
+                </p>
+              </div>
+            )}
           </div>
         </section>
 
