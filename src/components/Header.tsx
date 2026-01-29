@@ -11,7 +11,7 @@ const Header = () => {
       <div className="container flex items-center justify-between h-16 md:h-20 bg-primary text-primary-foreground">
         {/* Logo */}
         <Link to="/" className="flex items-center">
-          <img alt="TRUFI - Confianza Inmediata" className="h-10 md:h-12 w-auto object-cover shadow-2xl border rounded" src="/lovable-uploads/4f4d1595-1fcf-4b4e-b604-ec7d158cb34a.png" />
+          <img alt="TRUFI - Confianza Inmediata" className="h-10 md:h-12 w-auto object-cover shadow-2xl rounded border-0 border-none" src="/lovable-uploads/4f4d1595-1fcf-4b4e-b604-ec7d158cb34a.png" />
         </Link>
 
         {/* Desktop Navigation */}
