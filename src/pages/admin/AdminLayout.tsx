@@ -8,7 +8,8 @@ import {
   Settings, 
   LogOut, 
   Menu,
-  X
+  X,
+  Users
 } from 'lucide-react';
 import trufiLogo from '@/assets/trufi_logo.png';
 import { useState } from 'react';
@@ -27,6 +28,7 @@ const AdminLayout = () => {
   const navItems = [
     { path: '/admin', icon: LayoutDashboard, label: 'Dashboard', exact: true },
     { path: '/admin/posts', icon: FileText, label: 'Artículos' },
+    { path: '/admin/segmentos', icon: Users, label: 'Audiencias' },
     { path: '/admin/settings', icon: Settings, label: 'Configuración' },
   ];
 

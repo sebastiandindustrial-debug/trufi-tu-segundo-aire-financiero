@@ -25,6 +25,7 @@ import AdminDashboard from "./pages/admin/AdminDashboard";
 import AdminPosts from "./pages/admin/AdminPosts";
 import PostEditor from "./pages/admin/PostEditor";
 import AdminSettings from "./pages/admin/AdminSettings";
+import AdminSegmentos from "./pages/admin/AdminSegmentos";
 
 const queryClient = new QueryClient();
 
@@ -66,6 +67,7 @@ const App = () => (
               <Route path="posts/new" element={<PostEditor />} />
               <Route path="posts/:id" element={<PostEditor />} />
               <Route path="settings" element={<AdminSettings />} />
+              <Route path="segmentos" element={<AdminSegmentos />} />
             </Route>
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

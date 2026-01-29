@@ -1,36 +1,26 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Loader2 } from "lucide-react";
 import { Link } from "react-router-dom";
-
-const audiences = [
-  {
-    id: "pensionado",
-    title: "Soy Pensionado",
-    description: "Créditos diseñados para tu tranquilidad y bienestar.",
-    // RUTA DE LA FOTO: Cambiarás esto cuando subas la imagen en el admin
-    imageSrc: "/lovable-uploads/foto-pensionado.jpg",
-    link: "/pensionado",
-  },
-  {
-    id: "docente",
-    title: "Soy Docente",
-    description: "Beneficios exclusivos para educadores del sector público.",
-    // RUTA DE LA FOTO: Cambiarás esto cuando subas la imagen en el admin
-    imageSrc: "/lovable-uploads/foto-docente.jpg",
-    link: "/docente",
-  },
-  {
-    id: "fuerza-publica",
-    title: "Soy Fuerza Pública",
-    description: "Condiciones especiales para nuestros héroes.",
-    // RUTA DE LA FOTO: Cambiarás esto cuando subas la imagen en el admin
-    imageSrc: "/lovable-uploads/foto-fuerza-publica.jpg",
-    link: "/fuerza-publica",
-  },
-];
+import { useSegmentos } from "@/hooks/useSegmentos";
 
 const AudienceSegmentation = () => {
+  const { data: segmentos, isLoading } = useSegmentos();
+
+  if (isLoading) {
+    return (
+      <section className="py-16 bg-gray-50" id="audiencias">
+        <div className="container flex justify-center">
+          <Loader2 className="h-8 w-8 animate-spin text-primary" />
+        </div>
+      </section>
+    );
+  }
+
+  if (!segmentos || segmentos.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 bg-gray-50" id="audiencias">
       <div className="container">
@@ -40,21 +30,26 @@ const AudienceSegmentation = () => {
         </div>
 
         <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-          {audiences.map((item) => (
-            <Link key={item.id} to={item.link} className="block group">
+          {segmentos.map((item) => (
+            <Link key={item.id} to={item.enlace} className="block group">
               <Card className="p-6 h-full border-2 border-transparent hover:border-primary/20 transition-all duration-300 hover:shadow-lg group-hover:-translate-y-1 bg-white overflow-hidden">
                 <div className="flex flex-col h-full">
-                  {/* CONTENEDOR DE LA IMAGEN */}
                   <div className="mb-6 relative h-48 rounded-xl overflow-hidden bg-gray-100">
-                    <img
-                      src={item.imageSrc}
-                      alt={item.title}
-                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
+                    {item.imagen_url ? (
+                      <img
+                        src={item.imagen_url}
+                        alt={item.titulo}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex items-center justify-center text-gray-400">
+                        Sin imagen
+                      </div>
+                    )}
                   </div>
 
-                  <h3 className="text-xl font-bold text-primary mb-2 font-archive">{item.title}</h3>
-                  <p className="text-gray-600 mb-6 flex-grow">{item.description}</p>
+                  <h3 className="text-xl font-bold text-primary mb-2 font-archive">{item.titulo}</h3>
+                  <p className="text-gray-600 mb-6 flex-grow">{item.descripcion}</p>
 
                   <Button
                     variant="ghost"
