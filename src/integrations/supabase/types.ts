@@ -83,6 +83,39 @@ export type Database = {
         }
         Relationships: []
       }
+      segmentos_audiencia: {
+        Row: {
+          created_at: string
+          descripcion: string
+          enlace: string
+          id: string
+          imagen_url: string | null
+          orden: number
+          titulo: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          descripcion: string
+          enlace: string
+          id?: string
+          imagen_url?: string | null
+          orden?: number
+          titulo: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          descripcion?: string
+          enlace?: string
+          id?: string
+          imagen_url?: string | null
+          orden?: number
+          titulo?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       settings: {
         Row: {
           created_at: string
