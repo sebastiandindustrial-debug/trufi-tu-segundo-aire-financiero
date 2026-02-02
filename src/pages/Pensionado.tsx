@@ -9,6 +9,7 @@ import { Check, Heart, Clock, Shield, Phone, ArrowLeft, Send } from "lucide-reac
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "sonner";
+import { contactFormPensionadoSchema, type ContactFormPensionado } from "@/lib/validations";
 
 const benefits = [
   {
@@ -41,15 +42,33 @@ const requirements = [
 ];
 
 const Pensionado = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormPensionado>({
     nombre: "",
     telefono: "",
     email: "",
     mensaje: "",
   });
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormPensionado, string>>>({});
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form data using zod schema
+    const result = contactFormPensionadoSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof ContactFormPensionado, string>> = {};
+      result.error.errors.forEach((error) => {
+        const field = error.path[0] as keyof ContactFormPensionado;
+        fieldErrors[field] = error.message;
+      });
+      setErrors(fieldErrors);
+      toast.error("Por favor corrige los errores en el formulario");
+      return;
+    }
+    
+    // Clear errors on successful validation
+    setErrors({});
     toast.success("¡Solicitud enviada! Un asesor te contactará pronto.");
     setFormData({ nombre: "", telefono: "", email: "", mensaje: "" });
   };
@@ -179,9 +198,14 @@ const Pensionado = () => {
                     <Input 
                       placeholder="Tu nombre"
                       value={formData.nombre}
-                      onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                      required
+                      onChange={(e) => {
+                        setFormData({...formData, nombre: e.target.value});
+                        if (errors.nombre) setErrors({...errors, nombre: undefined});
+                      }}
+                      className={errors.nombre ? "border-destructive" : ""}
+                      maxLength={100}
                     />
+                    {errors.nombre && <p className="text-xs text-destructive">{errors.nombre}</p>}
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Teléfono</label>
@@ -189,9 +213,14 @@ const Pensionado = () => {
                       placeholder="Tu teléfono"
                       type="tel"
                       value={formData.telefono}
-                      onChange={(e) => setFormData({...formData, telefono: e.target.value})}
-                      required
+                      onChange={(e) => {
+                        setFormData({...formData, telefono: e.target.value});
+                        if (errors.telefono) setErrors({...errors, telefono: undefined});
+                      }}
+                      className={errors.telefono ? "border-destructive" : ""}
+                      maxLength={20}
                     />
+                    {errors.telefono && <p className="text-xs text-destructive">{errors.telefono}</p>}
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -200,18 +229,29 @@ const Pensionado = () => {
                     placeholder="tu@email.com"
                     type="email"
                     value={formData.email}
-                    onChange={(e) => setFormData({...formData, email: e.target.value})}
-                    required
+                    onChange={(e) => {
+                      setFormData({...formData, email: e.target.value});
+                      if (errors.email) setErrors({...errors, email: undefined});
+                    }}
+                    className={errors.email ? "border-destructive" : ""}
+                    maxLength={255}
                   />
+                  {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">Mensaje (opcional)</label>
                   <Textarea 
                     placeholder="Cuéntanos cómo podemos ayudarte..."
                     value={formData.mensaje}
-                    onChange={(e) => setFormData({...formData, mensaje: e.target.value})}
+                    onChange={(e) => {
+                      setFormData({...formData, mensaje: e.target.value});
+                      if (errors.mensaje) setErrors({...errors, mensaje: undefined});
+                    }}
+                    className={errors.mensaje ? "border-destructive" : ""}
                     rows={4}
+                    maxLength={1000}
                   />
+                  {errors.mensaje && <p className="text-xs text-destructive">{errors.mensaje}</p>}
                 </div>
                 <Button type="submit" variant="cta" size="lg" className="w-full gap-2">
                   <Send className="w-4 h-4" />

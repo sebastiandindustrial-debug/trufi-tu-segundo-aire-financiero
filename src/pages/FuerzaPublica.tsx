@@ -9,6 +9,7 @@ import { Check, Shield, Award, Clock, Users, ArrowLeft, Send } from "lucide-reac
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "sonner";
+import { contactFormFuerzaPublicaSchema, type ContactFormFuerzaPublica } from "@/lib/validations";
 
 const benefits = [
   {
@@ -50,16 +51,34 @@ const institutions = [
 ];
 
 const FuerzaPublica = () => {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<ContactFormFuerzaPublica>({
     nombre: "",
     telefono: "",
     email: "",
     institucion: "",
     mensaje: "",
   });
+  const [errors, setErrors] = useState<Partial<Record<keyof ContactFormFuerzaPublica, string>>>({});
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Validate form data using zod schema
+    const result = contactFormFuerzaPublicaSchema.safeParse(formData);
+    
+    if (!result.success) {
+      const fieldErrors: Partial<Record<keyof ContactFormFuerzaPublica, string>> = {};
+      result.error.errors.forEach((error) => {
+        const field = error.path[0] as keyof ContactFormFuerzaPublica;
+        fieldErrors[field] = error.message;
+      });
+      setErrors(fieldErrors);
+      toast.error("Por favor corrige los errores en el formulario");
+      return;
+    }
+    
+    // Clear errors on successful validation
+    setErrors({});
     toast.success("¡Solicitud enviada! Un asesor te contactará pronto.");
     setFormData({ nombre: "", telefono: "", email: "", institucion: "", mensaje: "" });
   };
@@ -211,9 +230,14 @@ const FuerzaPublica = () => {
                     <Input 
                       placeholder="Tu nombre"
                       value={formData.nombre}
-                      onChange={(e) => setFormData({...formData, nombre: e.target.value})}
-                      required
+                      onChange={(e) => {
+                        setFormData({...formData, nombre: e.target.value});
+                        if (errors.nombre) setErrors({...errors, nombre: undefined});
+                      }}
+                      className={errors.nombre ? "border-destructive" : ""}
+                      maxLength={100}
                     />
+                    {errors.nombre && <p className="text-xs text-destructive">{errors.nombre}</p>}
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Teléfono</label>
@@ -221,9 +245,14 @@ const FuerzaPublica = () => {
                       placeholder="Tu teléfono"
                       type="tel"
                       value={formData.telefono}
-                      onChange={(e) => setFormData({...formData, telefono: e.target.value})}
-                      required
+                      onChange={(e) => {
+                        setFormData({...formData, telefono: e.target.value});
+                        if (errors.telefono) setErrors({...errors, telefono: undefined});
+                      }}
+                      className={errors.telefono ? "border-destructive" : ""}
+                      maxLength={20}
                     />
+                    {errors.telefono && <p className="text-xs text-destructive">{errors.telefono}</p>}
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-4">
@@ -233,17 +262,28 @@ const FuerzaPublica = () => {
                       placeholder="tu@email.com"
                       type="email"
                       value={formData.email}
-                      onChange={(e) => setFormData({...formData, email: e.target.value})}
-                      required
+                      onChange={(e) => {
+                        setFormData({...formData, email: e.target.value});
+                        if (errors.email) setErrors({...errors, email: undefined});
+                      }}
+                      className={errors.email ? "border-destructive" : ""}
+                      maxLength={255}
                     />
+                    {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Institución</label>
                     <Input 
                       placeholder="Ej: Ejército Nacional"
                       value={formData.institucion}
-                      onChange={(e) => setFormData({...formData, institucion: e.target.value})}
+                      onChange={(e) => {
+                        setFormData({...formData, institucion: e.target.value});
+                        if (errors.institucion) setErrors({...errors, institucion: undefined});
+                      }}
+                      className={errors.institucion ? "border-destructive" : ""}
+                      maxLength={200}
                     />
+                    {errors.institucion && <p className="text-xs text-destructive">{errors.institucion}</p>}
                   </div>
                 </div>
                 <div className="space-y-2">
@@ -251,9 +291,15 @@ const FuerzaPublica = () => {
                   <Textarea 
                     placeholder="Cuéntanos cómo podemos ayudarte..."
                     value={formData.mensaje}
-                    onChange={(e) => setFormData({...formData, mensaje: e.target.value})}
+                    onChange={(e) => {
+                      setFormData({...formData, mensaje: e.target.value});
+                      if (errors.mensaje) setErrors({...errors, mensaje: undefined});
+                    }}
+                    className={errors.mensaje ? "border-destructive" : ""}
                     rows={4}
+                    maxLength={1000}
                   />
+                  {errors.mensaje && <p className="text-xs text-destructive">{errors.mensaje}</p>}
                 </div>
                 <Button type="submit" variant="cta" size="lg" className="w-full gap-2">
                   <Send className="w-4 h-4" />
