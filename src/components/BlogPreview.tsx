@@ -9,6 +9,11 @@ const BlogPreview = () => {
   // Only show first 3 posts
   const displayPosts = posts?.slice(0, 3) || [];
 
+  // Don't render the section if there are no posts
+  if (!isLoading && displayPosts.length === 0) {
+    return null;
+  }
+
   return (
     <section className="py-16 md:py-24 bg-muted/30">
       <div className="container">
@@ -94,17 +99,7 @@ const BlogPreview = () => {
               </Link>
             </div>
           </>
-        ) : (
-          <div className="text-center py-12 bg-card rounded-2xl border border-border">
-            <BookOpen className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-            <h3 className="text-lg font-semibold text-foreground mb-2">
-              Próximamente
-            </h3>
-            <p className="text-muted-foreground">
-              Estamos preparando contenido educativo de calidad para ti.
-            </p>
-          </div>
-        )}
+        ) : null}
       </div>
     </section>
   );
