@@ -175,11 +175,9 @@ const Blog = () => {
                 ))}
               </div>
             ) : !isLoading && (
-              <div className="text-center py-12 bg-card rounded-2xl border border-border">
-                <BookOpen className="w-16 h-16 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-lg font-semibold text-foreground mb-2">Próximamente</h3>
-                <p className="text-muted-foreground">
-                  Estamos preparando contenido educativo de calidad para ti.
+              <div className="text-center py-8 text-muted-foreground">
+                <p className="text-sm">
+                  Estamos preparando más contenido. ¡Vuelve pronto!
                 </p>
               </div>
             )}

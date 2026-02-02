@@ -2,7 +2,7 @@ import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Slider } from "@/components/ui/slider";
 import { Card, CardContent } from "@/components/ui/card";
-import { Shield, Eye, ArrowRight } from "lucide-react";
+import { Shield, Eye, ArrowRight, Sparkles } from "lucide-react";
 
 const CreditSimulator = () => {
   const [amount, setAmount] = useState([30000000]);
@@ -28,7 +28,7 @@ const CreditSimulator = () => {
       id="simulador" 
       className="bg-card/95 backdrop-blur-md border-2 border-primary/20 shadow-elevated rounded-3xl overflow-hidden"
     >
-      <CardContent className="p-6 md:p-8 space-y-6">
+      <CardContent className="p-7 md:p-9 space-y-7">
         {/* Header */}
         <div className="text-center space-y-2">
           <h3 className="text-xl md:text-2xl font-bold text-foreground">
@@ -88,37 +88,38 @@ const CreditSimulator = () => {
         </div>
 
         {/* Monthly Payment Display */}
-        <div className="bg-accent rounded-xl p-4 text-center">
+        <div className="bg-gradient-to-br from-primary/5 to-accent rounded-xl p-5 text-center border border-primary/10">
           <p className="text-sm text-muted-foreground mb-1">
             Cuota mensual aproximada
           </p>
           <p className="text-2xl md:text-3xl font-bold text-foreground">
             {formatCurrency(monthlyPayment)}
           </p>
-          <p className="text-xs text-muted-foreground mt-1">
+          <p className="text-xs text-muted-foreground mt-2">
             *Tasa de referencia del mercado
           </p>
         </div>
 
-        {/* CTA Button */}
+        {/* CTA Button - Prioridad visual absoluta */}
         <Button
           variant="cta"
           size="xl"
-          className="w-full text-lg py-6 font-bold group"
+          className="w-full text-lg py-7 font-bold group bg-secondary hover:bg-secondary/90 text-primary shadow-xl hover:shadow-2xl"
         >
+          <Sparkles className="w-5 h-5 mr-2" />
           ¡Lo quiero! Solicitar Ahora
           <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
         </Button>
 
         {/* Trust Badges */}
-        <div className="flex items-center justify-center gap-6 pt-2 pb-1 border-t border-border">
+        <div className="flex items-center justify-center gap-6 pt-3 pb-1 border-t border-border">
           <div className="flex items-center gap-2 text-muted-foreground">
-            <Shield className="w-5 h-5" />
+            <Shield className="w-4 h-4" />
             <span className="text-xs font-medium">Proceso Seguro</span>
           </div>
           <div className="h-4 w-px bg-border" />
           <div className="flex items-center gap-2 text-muted-foreground">
-            <Eye className="w-5 h-5" />
+            <Eye className="w-4 h-4" />
             <span className="text-xs font-medium">Vigilado Supersociedades</span>
           </div>
         </div>

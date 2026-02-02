@@ -5,11 +5,12 @@ import CreditSimulator from "@/components/CreditSimulator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Check, Heart, Clock, Shield, Phone, ArrowLeft, Send } from "lucide-react";
+import { Check, Heart, Clock, Shield, Phone, ArrowLeft, Send, Sun } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "sonner";
 import { contactFormPensionadoSchema, type ContactFormPensionado } from "@/lib/validations";
+import segmentImage from "@/assets/segment-pensionado.jpg";
 
 const benefits = [
   {
@@ -53,7 +54,6 @@ const Pensionado = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate form data using zod schema
     const result = contactFormPensionadoSchema.safeParse(formData);
     
     if (!result.success) {
@@ -67,16 +67,21 @@ const Pensionado = () => {
       return;
     }
     
-    // Clear errors on successful validation
     setErrors({});
     toast.success("¡Solicitud enviada! Un asesor te contactará pronto.");
     setFormData({ nombre: "", telefono: "", email: "", mensaje: "" });
   };
 
+  // Color de acento para Pensionados: Naranja cálido
+  const accentColor = "hsl(25, 90%, 55%)";
+  const accentBg = "bg-orange-500/10";
+  const accentText = "text-orange-600";
+  const accentBorder = "border-orange-500/30";
+
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-24 md:pt-28">
+      <main className="pt-20 md:pt-24">
         {/* Navegación rápida */}
         <div className="container py-4">
           <div className="flex items-center gap-4 flex-wrap">
@@ -89,35 +94,51 @@ const Pensionado = () => {
             <div className="h-4 w-px bg-border hidden sm:block" />
             <div className="flex gap-2 flex-wrap">
               <Link to="/docente">
-                <Button variant="outline" size="sm">Zona Docentes</Button>
+                <Button variant="outline" size="sm" className="text-xs">Zona Docentes</Button>
               </Link>
               <Link to="/fuerza-publica">
-                <Button variant="outline" size="sm">Zona Fuerza Pública</Button>
+                <Button variant="outline" size="sm" className="text-xs">Zona Fuerza Pública</Button>
               </Link>
             </div>
           </div>
         </div>
 
-        {/* Hero Section */}
-        <section className="py-12 md:py-20 bg-gradient-to-br from-primary/5 to-background">
-          <div className="container">
+        {/* Hero Section - Con imagen y color distintivo */}
+        <section className="py-12 md:py-20 relative overflow-hidden">
+          {/* Background con imagen del segmento */}
+          <div className="absolute inset-0">
+            <img 
+              src={segmentImage} 
+              alt="Pensionados felices"
+              className="w-full h-full object-cover opacity-20"
+            />
+            <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-background to-background" />
+          </div>
+          
+          <div className="container relative">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div className="space-y-6">
-                <div className="inline-block px-4 py-2 bg-primary/10 rounded-full">
-                  <span className="text-primary font-semibold text-sm">
+                {/* Badge con color distintivo */}
+                <div className={`inline-flex items-center gap-2 px-4 py-2 ${accentBg} ${accentBorder} border rounded-full`}>
+                  <Sun className={`w-4 h-4 ${accentText}`} />
+                  <span className={`${accentText} font-semibold text-sm`}>
                     Créditos para Pensionados
                   </span>
                 </div>
                 <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
                   Tu tranquilidad financiera está{" "}
-                  <span className="text-primary">garantizada</span>
+                  <span className={accentText}>garantizada</span>
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground">
                   Después de años de trabajo, mereces disfrutar sin preocupaciones.
                   En TRUFI creemos en tu segundo aire financiero, incluso si estás reportado.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button variant="hero" size="xl">
+                  <Button 
+                    variant="cta" 
+                    size="xl"
+                    className="bg-orange-500 hover:bg-orange-600"
+                  >
                     Solicitar Ahora
                   </Button>
                   <Button variant="outline" size="xl">
@@ -132,44 +153,44 @@ const Pensionado = () => {
           </div>
         </section>
 
-        {/* Benefits Section */}
-        <section className="py-12 md:py-16">
+        {/* Benefits Section - Mayor padding */}
+        <section className="py-14 md:py-20">
           <div className="container">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
               Beneficios Exclusivos para Pensionados
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
-                  className="bg-card border border-border rounded-2xl p-6 text-center hover:shadow-elevated transition-shadow"
+                  className={`bg-card border ${accentBorder} rounded-2xl p-7 text-center hover:shadow-elevated transition-all duration-300`}
                 >
-                  <div className="w-14 h-14 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <benefit.icon className="w-7 h-7 text-primary" />
+                  <div className={`w-14 h-14 ${accentBg} rounded-xl flex items-center justify-center mx-auto mb-5`}>
+                    <benefit.icon className={`w-7 h-7 ${accentText}`} />
                   </div>
-                  <h3 className="font-bold text-foreground mb-2">{benefit.title}</h3>
-                  <p className="text-sm text-muted-foreground">{benefit.description}</p>
+                  <h3 className="font-bold text-foreground mb-3">{benefit.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Requirements Section */}
-        <section className="py-12 md:py-16 bg-muted/50">
+        {/* Requirements Section - Mayor padding */}
+        <section className="py-14 md:py-20 bg-orange-50/50">
           <div className="container">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
                 Requisitos Sencillos
               </h2>
-              <div className="bg-card border border-border rounded-2xl p-6 md:p-8">
-                <ul className="space-y-4">
+              <div className={`bg-card border ${accentBorder} rounded-2xl p-8 md:p-10`}>
+                <ul className="space-y-5">
                   {requirements.map((req, index) => (
-                    <li key={index} className="flex items-start gap-3">
-                      <div className="w-6 h-6 bg-primary/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-4 h-4 text-primary" />
+                    <li key={index} className="flex items-start gap-4">
+                      <div className={`w-7 h-7 ${accentBg} rounded-full flex items-center justify-center flex-shrink-0 mt-0.5`}>
+                        <Check className={`w-4 h-4 ${accentText}`} />
                       </div>
-                      <span className="text-foreground">{req}</span>
+                      <span className="text-foreground text-base leading-relaxed">{req}</span>
                     </li>
                   ))}
                 </ul>
@@ -178,21 +199,21 @@ const Pensionado = () => {
           </div>
         </section>
 
-        {/* Formulario de Asistencia */}
-        <section className="py-12 md:py-16">
+        {/* Formulario de Asistencia - Más discreto con fondo gris */}
+        <section className="py-14 md:py-20 bg-muted/40">
           <div className="container">
             <div className="max-w-2xl mx-auto">
               <div className="text-center mb-8">
-                <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-2">
-                  Solicita Asistencia Personalizada
+                <h2 className="text-xl md:text-2xl font-bold text-foreground mb-2">
+                  ¿Necesitas ayuda personalizada?
                 </h2>
-                <p className="text-muted-foreground">
+                <p className="text-muted-foreground text-sm">
                   Déjanos tus datos y un asesor especializado te contactará
                 </p>
               </div>
               
-              <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-6 md:p-8 space-y-4">
-                <div className="grid sm:grid-cols-2 gap-4">
+              <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-7 md:p-9 space-y-5">
+                <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Nombre completo</label>
                     <Input 
@@ -248,12 +269,12 @@ const Pensionado = () => {
                       if (errors.mensaje) setErrors({...errors, mensaje: undefined});
                     }}
                     className={errors.mensaje ? "border-destructive" : ""}
-                    rows={4}
+                    rows={3}
                     maxLength={1000}
                   />
                   {errors.mensaje && <p className="text-xs text-destructive">{errors.mensaje}</p>}
                 </div>
-                <Button type="submit" variant="cta" size="lg" className="w-full gap-2">
+                <Button type="submit" variant="outline" size="lg" className="w-full gap-2">
                   <Send className="w-4 h-4" />
                   Solicitar Asistencia
                 </Button>
@@ -263,15 +284,18 @@ const Pensionado = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-12 md:py-16 bg-gradient-to-br from-primary to-primary/80">
+        <section className="py-14 md:py-20 bg-gradient-to-br from-orange-500 to-orange-600">
           <div className="container text-center">
-            <h2 className="text-2xl md:text-3xl font-bold text-primary-foreground mb-4">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               ¿Listo para tu segundo aire financiero?
             </h2>
-            <p className="text-primary-foreground/80 mb-8 max-w-xl mx-auto">
+            <p className="text-white/90 mb-8 max-w-xl mx-auto">
               Nuestros asesores están disponibles para ayudarte en cada paso del proceso.
             </p>
-            <Button variant="secondary" size="xl">
+            <Button 
+              size="xl"
+              className="bg-white text-orange-600 hover:bg-white/90 font-bold"
+            >
               Solicitar Crédito Ahora
             </Button>
           </div>
