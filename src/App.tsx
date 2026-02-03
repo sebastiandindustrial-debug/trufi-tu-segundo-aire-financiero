@@ -28,6 +28,7 @@ import AdminPosts from "./pages/admin/AdminPosts";
 import PostEditor from "./pages/admin/PostEditor";
 import AdminSettings from "./pages/admin/AdminSettings";
 import AdminSegmentos from "./pages/admin/AdminSegmentos";
+import ScrollToTop from "@/components/ScrollToTop";
 
 const queryClient = new QueryClient();
 
@@ -42,6 +43,7 @@ const App = () => {
           <Sonner />
           {loading && <PageLoader onFinished={() => setLoading(false)} />}
           <BrowserRouter>
+            <ScrollToTop />
             <Routes>
               {/* Public Routes */}
               <Route path="/" element={<Index />} />

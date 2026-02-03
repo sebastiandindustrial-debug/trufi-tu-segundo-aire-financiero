@@ -1,104 +1,134 @@
-import { Heart, Shield, Home, Wrench, Zap, Droplets, Snowflake } from "lucide-react";
+import { Heart, Shield, Home, Wrench, Zap, Droplets, Snowflake, CheckCircle2 } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 
 const amparos = [
   {
     icon: Heart,
-    title: "Muerte",
-    description: "Protección para tu familia en caso de fallecimiento",
+    title: "Seguro de Vida",
+    description: "Tranquilidad total para tu familia. Cubrimos el saldo de la deuda en caso de fallecimiento.",
+    highlight: "Cobertura 100%"
   },
   {
     icon: Shield,
-    title: "Incapacidad Total y Permanente (ITP)",
-    description: "Cobertura ante eventos que afecten tu capacidad laboral",
+    title: "Incapacidad Total",
+    description: "Si no puedes trabajar, nosotros te respaldamos. Cobertura ante eventos que afecten tu capacidad laboral.",
+    highlight: "Respaldo Total"
   },
   {
     icon: Heart,
     title: "Auxilio Exequial",
-    description: "Apoyo para gastos funerarios del titular",
-  },
-  {
-    icon: Home,
-    title: "Asistencias Hogar",
-    description: "Servicios de emergencia para tu hogar",
+    description: "Apoyo financiero inmediato para gastos funerarios del titular. Estamos contigo en los momentos difíciles.",
+    highlight: "Apoyo Inmediato"
   },
 ];
 
 const asistenciasHogar = [
-  { icon: Wrench, title: "Cerrajería", description: "Apertura de puertas y cambio de chapas" },
-  { icon: Zap, title: "Electricidad", description: "Reparaciones eléctricas de emergencia" },
-  { icon: Droplets, title: "Plomería", description: "Reparación de fugas y desatascos" },
-  { icon: Snowflake, title: "Línea Blanca", description: "Reparación de electrodomésticos básicos" },
+  { icon: Wrench, title: "Cerrajería", desc: "Apertura y cambios" },
+  { icon: Zap, title: "Electricidad", desc: "Reparaciones urgentes" },
+  { icon: Droplets, title: "Plomería", desc: "Fugas y desatascos" },
+  { icon: Snowflake, title: "Línea Blanca", desc: "Electrodomésticos" },
 ];
 
 const BeneficiosTrufi = () => {
   return (
-    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-muted/30" id="beneficios-trufi">
-      <div className="container">
-        {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-secondary/20 text-primary text-sm font-semibold mb-4">
-            Protección Integral
-          </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Beneficios incluidos en tu crédito TRUFI
+    <section className="pt-10 pb-20 md:pt-16 md:pb-32 bg-secondary/5 relative overflow-hidden" id="beneficios-trufi">
+      {/* Decorative blobs */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-primary/5 rounded-full blur-3xl -z-10 pointer-events-none translate-x-1/2 -translate-y-1/2" />
+
+      <div className="container relative z-10">
+        <div className="text-center max-w-3xl mx-auto mb-20">
+          <Badge variant="outline" className="mb-4 px-4 py-1 border-primary/20 text-primary bg-primary/5 text-sm font-semibold uppercase tracking-wider">
+            Beneficios Exclusivos
+          </Badge>
+          <h2 className="text-3xl md:text-5xl font-extrabold text-foreground mb-6 leading-tight">
+            Más que un crédito, <br />
+            <span className="text-primary">una protección completa</span>
           </h2>
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Más que un crédito, te ofrecemos tranquilidad y respaldo. 
-            Todos nuestros productos incluyen cobertura de seguros sin costo adicional.
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Al adquirir tu libre inversión con TRUFI, accedes automáticamente a un paquete de protección premium
+            <span className="font-semibold text-foreground"> sin costo adicional</span>.
           </p>
         </div>
 
-        {/* Amparos Grid - Mayor padding interno */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-14">
-          {amparos.map((amparo, index) => (
-            <div
-              key={index}
-              className="bg-card border border-border rounded-2xl p-7 md:p-8 text-center hover:shadow-elevated hover:border-primary/30 transition-all duration-300 group"
-            >
-              <div className="w-16 h-16 rounded-2xl bg-primary/10 flex items-center justify-center mx-auto mb-5 group-hover:bg-primary/20 transition-colors">
-                <amparo.icon className="w-8 h-8 text-primary" />
-              </div>
-              <h3 className="font-bold text-foreground mb-3 text-lg">{amparo.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{amparo.description}</p>
-            </div>
-          ))}
-        </div>
-
-        {/* Asistencias Hogar Section - Mayor padding */}
-        <div className="bg-primary rounded-3xl p-8 md:p-14 text-primary-foreground">
-          <div className="grid lg:grid-cols-2 gap-10 items-center">
-            <div>
-              <h3 className="text-2xl md:text-3xl font-bold mb-5">
-                Asistencias Hogar incluidas
-              </h3>
-              <p className="text-primary-foreground/85 mb-8 text-lg leading-relaxed">
-                Para que tu hogar siempre esté protegido. Servicios de emergencia 
-                disponibles cuando más los necesites.
-              </p>
-              <div className="bg-white/10 rounded-xl p-5 backdrop-blur-sm">
-                <p className="text-sm leading-relaxed">
-                  <strong>Límite:</strong> 2 eventos por año, hasta $400.000 COP cada uno
-                </p>
-                <p className="text-sm mt-2 leading-relaxed">
-                  <strong>Edad máxima de ingreso:</strong> 85 años
-                </p>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-5">
-              {asistenciasHogar.map((asistencia, index) => (
-                <div
-                  key={index}
-                  className="bg-white/10 backdrop-blur-sm rounded-xl p-5 hover:bg-white/15 transition-colors"
-                >
-                  <div className="w-11 h-11 rounded-lg bg-white/20 flex items-center justify-center mb-4">
-                    <asistencia.icon className="w-5 h-5 text-secondary" />
-                  </div>
-                  <h4 className="font-semibold text-sm mb-2">{asistencia.title}</h4>
-                  <p className="text-xs text-primary-foreground/75 leading-relaxed">{asistencia.description}</p>
+        <div className="grid lg:grid-cols-3 gap-8 items-start">
+          {/* Columna Izquierda: Amparos (Seguros) */}
+          <div className="lg:col-span-2 grid md:grid-cols-2 gap-6">
+            {amparos.map((item, index) => (
+              <Card key={index} className="group border-0 shadow-card hover:shadow-elevated transition-all duration-300 hover:-translate-y-1 bg-white rounded-[2rem] p-8 overflow-hidden relative">
+                <div className="absolute top-0 right-0 p-4 opacity-50">
+                  <item.icon className="w-24 h-24 text-secondary/5 -rotate-12" />
                 </div>
-              ))}
-            </div>
+
+                <div className="relative z-10">
+                  <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6 group-hover:bg-primary/20 transition-colors">
+                    <item.icon className="w-7 h-7 text-primary" />
+                  </div>
+
+                  <Badge className="mb-4 bg-secondary/10 text-secondary-foreground hover:bg-secondary/20 border-0 font-medium">
+                    {item.highlight}
+                  </Badge>
+
+                  <h3 className="text-2xl font-bold text-foreground mb-3">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {item.description}
+                  </p>
+                </div>
+              </Card>
+            ))}
+
+            {/* Tarjeta Resumen Valor */}
+            <Card className="flex flex-col justify-center items-center text-center p-8 bg-gradient-to-br from-primary/5 to-secondary/5 border-dashed border-2 border-primary/20 rounded-[2rem]">
+              <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-sm mb-4">
+                <CheckCircle2 className="w-8 h-8 text-primary" />
+              </div>
+              <h3 className="text-xl font-bold text-foreground mb-2">Todo Incluido</h3>
+              <p className="text-sm text-muted-foreground">
+                Sin letra pequeña ni costos ocultos. Tu tranquilidad es parte del servicio.
+              </p>
+            </Card>
+          </div>
+
+          {/* Columna Derecha: Asistencias Hogar (Featured) */}
+          <div className="lg:col-span-1 h-full">
+            <Card className="h-full bg-primary text-primary-foreground rounded-[2rem] p-8 md:p-10 shadow-xl relative overflow-hidden group border-0">
+              {/* Decorative background pattern */}
+              <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
+              <Home className="absolute -bottom-6 -right-6 w-48 h-48 text-white/10 rotate-12" />
+
+              <div className="relative z-10 h-full flex flex-col">
+                <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-8">
+                  <Home className="w-8 h-8 text-white" />
+                </div>
+
+                <h3 className="text-3xl font-bold mb-4">Asistencias Hogar</h3>
+                <p className="text-primary-foreground/90 text-lg mb-10 leading-relaxed">
+                  Porque tu hogar es tu refugio, lo protegemos ante cualquier imprevisto.
+                </p>
+
+                <div className="space-y-4 mt-auto">
+                  {asistenciasHogar.map((item, idx) => (
+                    <div key={idx} className="flex items-center gap-4 bg-white/10 p-4 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors">
+                      <div className="bg-white/20 p-2 rounded-lg">
+                        <item.icon className="w-5 h-5 text-white" />
+                      </div>
+                      <div>
+                        <p className="font-bold text-sm">{item.title}</p>
+                        <p className="text-xs text-white/70">{item.desc}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-white/20">
+                  <p className="text-sm text-white/80 font-medium text-center">
+                    Disponible 24/7 para emergencias
+                  </p>
+                </div>
+              </div>
+            </Card>
           </div>
         </div>
       </div>

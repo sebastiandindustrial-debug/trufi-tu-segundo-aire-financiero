@@ -1,14 +1,50 @@
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { ChevronRight, Loader2 } from "lucide-react";
+import { ChevronRight, Loader2, HandHeart, GraduationCap, Shield, LucideIcon } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useSegmentos } from "@/hooks/useSegmentos";
 
+// Configuración de estilo por segmento
+interface SegmentConfig {
+  icon: LucideIcon;
+  colorClass: string;
+  gradientClass: string;
+  shadowClass: string;
+}
+
+const segmentConfig: Record<string, SegmentConfig> = {
+  pensionado: {
+    icon: HandHeart,
+    colorClass: "text-segment-pensionado",
+    gradientClass: "from-segment-pensionado/80",
+    shadowClass: "group-hover:shadow-[0_10px_40px_-10px_hsl(var(--segment-pensionado)/0.3)]",
+  },
+  docente: {
+    icon: GraduationCap,
+    colorClass: "text-segment-docente",
+    gradientClass: "from-segment-docente/80",
+    shadowClass: "group-hover:shadow-[0_10px_40px_-10px_hsl(var(--segment-docente)/0.3)]",
+  },
+  "fuerza-publica": {
+    icon: Shield,
+    colorClass: "text-segment-fuerza",
+    gradientClass: "from-segment-fuerza/80",
+    shadowClass: "group-hover:shadow-[0_10px_40px_-10px_hsl(var(--segment-fuerza)/0.3)]",
+  },
+  // Fallback
+  default: {
+    icon: HandHeart,
+    colorClass: "text-primary",
+    gradientClass: "from-primary/80",
+    shadowClass: "group-hover:shadow-xl",
+  }
+};
+
 // Imágenes de respaldo para cada perfil si no hay imagen en BD
 const fallbackImages: Record<string, string> = {
-  pensionado: "https://images.unsplash.com/photo-1581579438747-1dc8d17bbce4?q=80&w=800&auto=format&fit=crop",
-  docente: "https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=800&auto=format&fit=crop",
-  "fuerza-publica": "https://images.unsplash.com/photo-1579912437766-7896df6d3cd3?q=80&w=800&auto=format&fit=crop",
+  pensionado: "/pensionado.png",
+  docente: "/docente.png",
+  "fuerza-publica": "/fuerza_publica.png",
 };
 
 const AudienceSegmentation = () => {
@@ -28,60 +64,85 @@ const AudienceSegmentation = () => {
     return null;
   }
 
-  const getFallbackImage = (enlace: string) => {
+  const getSegmentConfig = (enlace: string) => {
     const key = enlace.replace("/", "");
-    return fallbackImages[key] || fallbackImages.pensionado;
+    return segmentConfig[key] || segmentConfig.default;
+  };
+
+  // Función mejorada para obtener imagen basada en el título
+  const getFallbackImage = (titulo: string) => {
+    const t = titulo.toLowerCase();
+    if (t.includes("pensionado")) return "/lovable-uploads/pensionado.png";
+    if (t.includes("docente")) return "/lovable-uploads/docente.png";
+    if (t.includes("fuerza")) return "/lovable-uploads/fuerza_publica.png";
+    return "/lovable-uploads/pensionado.png"; // Fallback por defecto
   };
 
   return (
-    <section className="py-16 md:py-24 bg-muted/30" id="audiencias">
+    <section className="pt-20 pb-10 md:pt-32 md:pb-16 bg-background relative overflow-hidden" id="audiencias">
+      {/* Decorative background blob */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-secondary/5 rounded-full blur-3xl -z-10 pointer-events-none" />
+
       <div className="container">
-        <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-semibold mb-4">
+        <div className="text-center max-w-2xl mx-auto mb-16 space-y-4">
+          <span className="inline-block px-4 py-1.5 rounded-full bg-primary/5 text-primary font-bold text-sm tracking-wide uppercase">
             Elige tu perfil
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+          <h2 className="text-3xl md:text-5xl font-extrabold text-foreground tracking-tight">
             ¿A qué grupo perteneces?
           </h2>
-          <p className="text-muted-foreground text-lg">
-            Selecciona tu perfil para ver los beneficios personalizados diseñados especialmente para ti.
+          <p className="text-muted-foreground text-lg leading-relaxed">
+            Hemos diseñado beneficios exclusivos pensando en las necesidades específicas de tu sector.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {segmentos.map((item) => (
-            <Link key={item.id} to={item.enlace} className="block group">
-              <Card className="h-full border-0 shadow-card hover:shadow-elevated transition-all duration-500 group-hover:-translate-y-2 bg-card overflow-hidden rounded-3xl">
-                {/* Image Container */}
-                <div className="relative h-64 overflow-hidden">
-                  <img
-                    src={item.imagen_url || getFallbackImage(item.enlace)}
-                    alt={item.titulo}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-                  
-                  {/* Title overlay */}
-                  <div className="absolute bottom-0 left-0 right-0 p-6">
-                    <h3 className="text-2xl font-bold text-white mb-1">{item.titulo}</h3>
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+          {segmentos.map((item) => {
+            const config = getSegmentConfig(item.enlace);
+            const Icon = config.icon;
+
+            return (
+              <Link key={item.id} to={item.enlace} className="block group h-full">
+                <Card className={`h-full border border-border/50 shadow-card hover:-translate-y-2 transition-all duration-500 bg-card overflow-hidden rounded-[2rem] flex flex-col ${config.shadowClass} transform-gpu isolation-isolate`}>
+                  {/* Image Container */}
+                  <div className="relative h-64 overflow-hidden">
+                    <img
+                      src={getFallbackImage(item.titulo)}
+                      alt={item.titulo}
+                      className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
+                    />
+                    {/* Dynamic Gradient Overlay */}
+                    <div className={`absolute inset-0 bg-gradient-to-t ${config.gradientClass} via-transparent to-transparent opacity-90`} />
+
+                    {/* Icon & Title Overlay */}
+                    <div className="absolute bottom-0 left-0 right-0 p-6 flex flex-col justify-end">
+                      <div className={`mb-3 w-12 h-12 rounded-xl bg-white/20 backdrop-blur-md flex items-center justify-center text-white`}>
+                        <Icon className="w-6 h-6 stroke-[2.5]" />
+                      </div>
+                      <h3 className="text-2xl md:text-3xl font-bold text-white leading-none">
+                        {item.titulo}
+                      </h3>
+                    </div>
                   </div>
-                </div>
 
-                {/* Content */}
-                <div className="p-6">
-                  <p className="text-muted-foreground mb-4 leading-relaxed">{item.descripcion}</p>
+                  {/* Content */}
+                  <div className="p-8 flex flex-col flex-grow">
+                    <p className="text-muted-foreground mb-8 leading-relaxed text-base flex-grow">
+                      {item.descripcion}
+                    </p>
 
-                  <Button
-                    variant="ghost"
-                    className="w-full justify-between group-hover:text-primary group-hover:bg-primary/5 font-semibold"
-                  >
-                    Ver mis beneficios
-                    <ChevronRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-2" />
-                  </Button>
-                </div>
-              </Card>
-            </Link>
-          ))}
+                    <Button
+                      variant="ghost"
+                      className={`w-full justify-between font-bold text-base py-6 rounded-xl transition-colors ${config.colorClass} bg-secondary/10 group-hover:bg-secondary/20`}
+                    >
+                      Ver beneficios exclusivos
+                      <ChevronRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+                    </Button>
+                  </div>
+                </Card>
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
