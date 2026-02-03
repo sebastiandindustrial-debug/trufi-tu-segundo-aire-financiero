@@ -3,6 +3,7 @@ import HeroSection from "@/components/HeroSection";
 import AudienceSegmentation from "@/components/AudienceSegmentation";
 import BeneficiosTrufi from "@/components/BeneficiosTrufi";
 import FinancialAcademySection from "@/components/FinancialAcademySection";
+import SocialMediaFeed from "@/components/SocialMediaFeed";
 
 
 import CTASection from "@/components/CTASection";
@@ -29,6 +30,9 @@ const Index = () => {
 
         {/* 4. Zona de Aprendizaje Financiero */}
         <FinancialAcademySection />
+
+        {/* 5. Redes Sociales */}
+        <SocialMediaFeed />
 
         {/* 6. Banner de Cierre (CTA) */}
         <CTASection />
