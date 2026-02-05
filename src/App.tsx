@@ -18,6 +18,7 @@ import TrufiPlus from "./pages/TrufiPlus";
 import TrufiFlex from "./pages/TrufiFlex";
 import Blog from "./pages/Blog";
 import ZonaPagos from "./pages/ZonaPagos";
+import PortalComercial from "./pages/PortalComercial";
 
 // Admin Pages
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -55,7 +56,9 @@ const App = () => {
               <Route path="/servicios/trufi-plus" element={<TrufiPlus />} />
               <Route path="/servicios/trufi-flex" element={<TrufiFlex />} />
               <Route path="/blog" element={<Blog />} />
+              <Route path="/blog" element={<Blog />} />
               <Route path="/zona-pagos" element={<ZonaPagos />} />
+              <Route path="/portal-comercial" element={<PortalComercial />} />
 
               {/* Admin Routes (Public) */}
               <Route path="/admin/login" element={<AdminLogin />} />

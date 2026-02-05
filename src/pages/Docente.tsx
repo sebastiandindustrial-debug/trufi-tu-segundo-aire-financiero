@@ -11,6 +11,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { contactFormDocenteSchema, type ContactFormDocente } from "@/lib/validations";
 import segmentImage from "@/assets/segment-docente.jpg";
+import ProductShowcase from "@/components/ProductShowcase";
+import Pagadurias from "@/components/Pagadurias";
 
 const benefits = [
   {
@@ -55,9 +57,9 @@ const Docente = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const result = contactFormDocenteSchema.safeParse(formData);
-    
+
     if (!result.success) {
       const fieldErrors: Partial<Record<keyof ContactFormDocente, string>> = {};
       result.error.errors.forEach((error) => {
@@ -68,7 +70,7 @@ const Docente = () => {
       toast.error("Por favor corrige los errores en el formulario");
       return;
     }
-    
+
     setErrors({});
     toast.success("¡Solicitud enviada! Un asesor te contactará pronto.");
     setFormData({ nombre: "", telefono: "", email: "", institucion: "", mensaje: "" });
@@ -108,14 +110,14 @@ const Docente = () => {
         <section className="py-12 md:py-20 relative overflow-hidden">
           {/* Background con imagen del segmento */}
           <div className="absolute inset-0">
-            <img 
-              src={segmentImage} 
+            <img
+              src={segmentImage}
               alt="Docente en aula"
               className="w-full h-full object-cover opacity-15"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-background to-background" />
           </div>
-          
+
           <div className="container relative">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div className="space-y-6">
@@ -131,12 +133,12 @@ const Docente = () => {
                   <span className={accentText}>transforman vidas</span>
                 </h1>
                 <p className="text-lg md:text-xl text-muted-foreground">
-                  Como educador, inspiras el futuro de Colombia. En TRUFI creemos en tu 
+                  Como educador, inspiras el futuro de Colombia. En TRUFI creemos en tu
                   segundo aire financiero, incluso si estás reportado.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    variant="cta" 
+                  <Button
+                    variant="cta"
                     size="xl"
                     className="bg-blue-600 hover:bg-blue-700"
                   >
@@ -200,6 +202,12 @@ const Docente = () => {
           </div>
         </section>
 
+        {/* Product Showcase */}
+        <ProductShowcase />
+
+        {/* Pagadurias */}
+        <Pagadurias />
+
         {/* Formulario de Asistencia - Más discreto */}
         <section className="py-14 md:py-20 bg-muted/40">
           <div className="container">
@@ -212,17 +220,17 @@ const Docente = () => {
                   Déjanos tus datos y un asesor especializado te contactará
                 </p>
               </div>
-              
+
               <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-7 md:p-9 space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Nombre completo</label>
-                    <Input 
+                    <Input
                       placeholder="Tu nombre"
                       value={formData.nombre}
                       onChange={(e) => {
-                        setFormData({...formData, nombre: e.target.value});
-                        if (errors.nombre) setErrors({...errors, nombre: undefined});
+                        setFormData({ ...formData, nombre: e.target.value });
+                        if (errors.nombre) setErrors({ ...errors, nombre: undefined });
                       }}
                       className={errors.nombre ? "border-destructive" : ""}
                       maxLength={100}
@@ -231,13 +239,13 @@ const Docente = () => {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Teléfono</label>
-                    <Input 
+                    <Input
                       placeholder="Tu teléfono"
                       type="tel"
                       value={formData.telefono}
                       onChange={(e) => {
-                        setFormData({...formData, telefono: e.target.value});
-                        if (errors.telefono) setErrors({...errors, telefono: undefined});
+                        setFormData({ ...formData, telefono: e.target.value });
+                        if (errors.telefono) setErrors({ ...errors, telefono: undefined });
                       }}
                       className={errors.telefono ? "border-destructive" : ""}
                       maxLength={20}
@@ -248,13 +256,13 @@ const Docente = () => {
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Correo electrónico</label>
-                    <Input 
+                    <Input
                       placeholder="tu@email.com"
                       type="email"
                       value={formData.email}
                       onChange={(e) => {
-                        setFormData({...formData, email: e.target.value});
-                        if (errors.email) setErrors({...errors, email: undefined});
+                        setFormData({ ...formData, email: e.target.value });
+                        if (errors.email) setErrors({ ...errors, email: undefined });
                       }}
                       className={errors.email ? "border-destructive" : ""}
                       maxLength={255}
@@ -263,12 +271,12 @@ const Docente = () => {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Institución educativa</label>
-                    <Input 
+                    <Input
                       placeholder="Nombre de tu institución"
                       value={formData.institucion}
                       onChange={(e) => {
-                        setFormData({...formData, institucion: e.target.value});
-                        if (errors.institucion) setErrors({...errors, institucion: undefined});
+                        setFormData({ ...formData, institucion: e.target.value });
+                        if (errors.institucion) setErrors({ ...errors, institucion: undefined });
                       }}
                       className={errors.institucion ? "border-destructive" : ""}
                       maxLength={200}
@@ -278,12 +286,12 @@ const Docente = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">Mensaje (opcional)</label>
-                  <Textarea 
+                  <Textarea
                     placeholder="Cuéntanos cómo podemos ayudarte..."
                     value={formData.mensaje}
                     onChange={(e) => {
-                      setFormData({...formData, mensaje: e.target.value});
-                      if (errors.mensaje) setErrors({...errors, mensaje: undefined});
+                      setFormData({ ...formData, mensaje: e.target.value });
+                      if (errors.mensaje) setErrors({ ...errors, mensaje: undefined });
                     }}
                     className={errors.mensaje ? "border-destructive" : ""}
                     rows={3}
@@ -308,10 +316,10 @@ const Docente = () => {
                 🎓 Crédito para Estudios de Posgrado
               </h2>
               <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
-                Financia tu maestría o especialización con condiciones especiales. 
+                Financia tu maestría o especialización con condiciones especiales.
                 Invierte en tu desarrollo profesional y aumenta tu impacto como educador.
               </p>
-              <Button 
+              <Button
                 size="xl"
                 className="bg-blue-600 hover:bg-blue-700 text-white"
               >
@@ -330,7 +338,7 @@ const Docente = () => {
             <p className="text-white/90 mb-8 max-w-xl mx-auto">
               Únete a miles de docentes que ya confían en TRUFI para su segundo aire financiero.
             </p>
-            <Button 
+            <Button
               size="xl"
               className="bg-white text-blue-600 hover:bg-white/90 font-bold"
             >

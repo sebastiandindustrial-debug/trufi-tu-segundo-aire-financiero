@@ -72,7 +72,7 @@ const AudienceSegmentation = () => {
   // Función mejorada para obtener imagen basada en el título
   const getFallbackImage = (titulo: string) => {
     const t = titulo.toLowerCase();
-    if (t.includes("pensionado")) return "/lovable-uploads/pensionado.png";
+    if (t.includes("pensionado")) return "/lovable-uploads/pensionado_updated.png";
     if (t.includes("docente")) return "/lovable-uploads/docente.png";
     if (t.includes("fuerza")) return "/lovable-uploads/fuerza_publica.png";
     return "/lovable-uploads/pensionado.png"; // Fallback por defecto

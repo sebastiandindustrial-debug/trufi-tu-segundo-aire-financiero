@@ -68,3 +68,36 @@ export const contactFormFuerzaPublicaSchema = contactFormDocenteSchema;
 export type ContactFormPensionado = z.infer<typeof contactFormPensionadoSchema>;
 export type ContactFormDocente = z.infer<typeof contactFormDocenteSchema>;
 export type ContactFormFuerzaPublica = z.infer<typeof contactFormFuerzaPublicaSchema>;
+
+// Contact form validation schema for Footer (General)
+export const footerContactFormSchema = z.object({
+  nombre: z
+    .string()
+    .trim()
+    .min(1, { message: "El nombre es requerido" })
+    .max(100, { message: "El nombre no puede exceder 100 caracteres" })
+    .regex(/^[a-zA-ZáéíóúÁÉÍÓÚñÑüÜ\s]+$/, { message: "El nombre solo puede contener letras" }),
+  telefono: z
+    .string()
+    .trim()
+    .min(1, { message: "El teléfono es requerido" })
+    .max(20, { message: "El teléfono no puede exceder 20 caracteres" })
+    .regex(/^[0-9+\-\s()]+$/, { message: "El teléfono solo puede contener números y caracteres válidos" }),
+  email: z
+    .string()
+    .trim()
+    .min(1, { message: "El correo electrónico es requerido" })
+    .email({ message: "Ingresa un correo electrónico válido" })
+    .max(255, { message: "El correo no puede exceder 255 caracteres" }),
+  mensaje: z
+    .string()
+    .trim()
+    .max(1000, { message: "El mensaje no puede exceder 1000 caracteres" })
+    .optional()
+    .or(z.literal('')),
+  aceptaTerminos: z.boolean().refine(val => val === true, {
+    message: "Debes aceptar la política de tratamiento de datos",
+  }),
+});
+
+export type FooterContactForm = z.infer<typeof footerContactFormSchema>;

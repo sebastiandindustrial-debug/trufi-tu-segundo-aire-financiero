@@ -11,6 +11,8 @@ import { useState } from "react";
 import { toast } from "sonner";
 import { contactFormPensionadoSchema, type ContactFormPensionado } from "@/lib/validations";
 import segmentImage from "@/assets/segment-pensionado.jpg";
+import ProductShowcase from "@/components/ProductShowcase";
+import Pagadurias from "@/components/Pagadurias";
 
 const benefits = [
   {
@@ -53,9 +55,9 @@ const Pensionado = () => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     const result = contactFormPensionadoSchema.safeParse(formData);
-    
+
     if (!result.success) {
       const fieldErrors: Partial<Record<keyof ContactFormPensionado, string>> = {};
       result.error.errors.forEach((error) => {
@@ -66,7 +68,7 @@ const Pensionado = () => {
       toast.error("Por favor corrige los errores en el formulario");
       return;
     }
-    
+
     setErrors({});
     toast.success("¡Solicitud enviada! Un asesor te contactará pronto.");
     setFormData({ nombre: "", telefono: "", email: "", mensaje: "" });
@@ -107,14 +109,14 @@ const Pensionado = () => {
         <section className="py-12 md:py-20 relative overflow-hidden">
           {/* Background con imagen del segmento */}
           <div className="absolute inset-0">
-            <img 
-              src={segmentImage} 
+            <img
+              src={segmentImage}
               alt="Pensionados felices"
               className="w-full h-full object-cover opacity-20"
             />
             <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-background to-background" />
           </div>
-          
+
           <div className="container relative">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               <div className="space-y-6">
@@ -134,8 +136,8 @@ const Pensionado = () => {
                   En TRUFI creemos en tu segundo aire financiero, incluso si estás reportado.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4">
-                  <Button 
-                    variant="cta" 
+                  <Button
+                    variant="cta"
                     size="xl"
                     className="bg-orange-500 hover:bg-orange-600"
                   >
@@ -199,6 +201,12 @@ const Pensionado = () => {
           </div>
         </section>
 
+        {/* Product Showcase */}
+        <ProductShowcase />
+
+        {/* Pagadurias */}
+        <Pagadurias />
+
         {/* Formulario de Asistencia - Más discreto con fondo gris */}
         <section className="py-14 md:py-20 bg-muted/40">
           <div className="container">
@@ -211,17 +219,17 @@ const Pensionado = () => {
                   Déjanos tus datos y un asesor especializado te contactará
                 </p>
               </div>
-              
+
               <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-7 md:p-9 space-y-5">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Nombre completo</label>
-                    <Input 
+                    <Input
                       placeholder="Tu nombre"
                       value={formData.nombre}
                       onChange={(e) => {
-                        setFormData({...formData, nombre: e.target.value});
-                        if (errors.nombre) setErrors({...errors, nombre: undefined});
+                        setFormData({ ...formData, nombre: e.target.value });
+                        if (errors.nombre) setErrors({ ...errors, nombre: undefined });
                       }}
                       className={errors.nombre ? "border-destructive" : ""}
                       maxLength={100}
@@ -230,13 +238,13 @@ const Pensionado = () => {
                   </div>
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Teléfono</label>
-                    <Input 
+                    <Input
                       placeholder="Tu teléfono"
                       type="tel"
                       value={formData.telefono}
                       onChange={(e) => {
-                        setFormData({...formData, telefono: e.target.value});
-                        if (errors.telefono) setErrors({...errors, telefono: undefined});
+                        setFormData({ ...formData, telefono: e.target.value });
+                        if (errors.telefono) setErrors({ ...errors, telefono: undefined });
                       }}
                       className={errors.telefono ? "border-destructive" : ""}
                       maxLength={20}
@@ -246,13 +254,13 @@ const Pensionado = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">Correo electrónico</label>
-                  <Input 
+                  <Input
                     placeholder="tu@email.com"
                     type="email"
                     value={formData.email}
                     onChange={(e) => {
-                      setFormData({...formData, email: e.target.value});
-                      if (errors.email) setErrors({...errors, email: undefined});
+                      setFormData({ ...formData, email: e.target.value });
+                      if (errors.email) setErrors({ ...errors, email: undefined });
                     }}
                     className={errors.email ? "border-destructive" : ""}
                     maxLength={255}
@@ -261,12 +269,12 @@ const Pensionado = () => {
                 </div>
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-foreground">Mensaje (opcional)</label>
-                  <Textarea 
+                  <Textarea
                     placeholder="Cuéntanos cómo podemos ayudarte..."
                     value={formData.mensaje}
                     onChange={(e) => {
-                      setFormData({...formData, mensaje: e.target.value});
-                      if (errors.mensaje) setErrors({...errors, mensaje: undefined});
+                      setFormData({ ...formData, mensaje: e.target.value });
+                      if (errors.mensaje) setErrors({ ...errors, mensaje: undefined });
                     }}
                     className={errors.mensaje ? "border-destructive" : ""}
                     rows={3}
@@ -292,7 +300,7 @@ const Pensionado = () => {
             <p className="text-white/90 mb-8 max-w-xl mx-auto">
               Nuestros asesores están disponibles para ayudarte en cada paso del proceso.
             </p>
-            <Button 
+            <Button
               size="xl"
               className="bg-white text-orange-600 hover:bg-white/90 font-bold"
             >

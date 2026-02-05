@@ -5,7 +5,7 @@ import CreditSimulator from "@/components/CreditSimulator";
 
 const HeroSection = () => {
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-32 pb-20 overflow-hidden bg-gradient-hero">
+    <section className="relative min-h-[100vh] flex items-center pt-32 pb-20 overflow-hidden bg-gradient-hero">
       {/* Abstract Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
         <div className="absolute top-[-10%] right-[-5%] w-[500px] h-[500px] bg-secondary/10 rounded-full blur-3xl animate-pulse-soft" />
@@ -78,6 +78,7 @@ const HeroSection = () => {
                   className="bg-white text-primary hover:bg-white/90 border-none font-bold rounded-full px-8 shadow-lg hover:shadow-xl transition-all"
                 >
                   Conoce más sobre nosotros
+                  <Play className="w-4 h-4 ml-2 fill-primary" />
                 </Button>
               </Link>
             </div>
@@ -93,26 +94,6 @@ const HeroSection = () => {
 
           </div>
         </div>
-      </div>
-
-      {/* Decorative bottom wave with Animation */}
-      <div className="absolute bottom-0 left-0 right-0 translate-y-1 overflow-hidden h-[120px] w-full">
-        <svg
-          viewBox="0 0 1440 120"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="absolute bottom-0 w-[200%] h-full animate-wave"
-          preserveAspectRatio="none"
-        >
-          <path
-            d="M0 60C240 100 480 20 720 60C960 100 1200 20 1440 60V120H0V60Z"
-            fill="hsl(var(--background))"
-          />
-          <path
-            d="M1440 60C1680 100 1920 20 2160 60C2400 100 2640 20 2880 60V120H1440V60Z"
-            fill="hsl(var(--background))"
-          />
-        </svg>
       </div>
     </section>
   );

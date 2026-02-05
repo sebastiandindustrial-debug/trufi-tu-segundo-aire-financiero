@@ -31,11 +31,11 @@ const Index = () => {
         {/* 4. Zona de Aprendizaje Financiero */}
         <FinancialAcademySection />
 
-        {/* 5. Redes Sociales */}
-        <SocialMediaFeed />
-
-        {/* 6. Banner de Cierre (CTA) */}
+        {/* 5. Banner de Cierre (CTA) - Ahora tipo Listón */}
         <CTASection />
+
+        {/* 6. Redes Sociales */}
+        <SocialMediaFeed />
       </main>
       <Footer />
       <WhatsAppButton />

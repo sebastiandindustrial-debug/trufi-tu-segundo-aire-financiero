@@ -18,7 +18,7 @@ const CreditSimulator = () => {
     }, []);
 
     // Cálculo de cuota mensual aproximado (tasa de referencia del mercado)
-    const monthlyRate = 0.015; // 1.5% mensual aproximado
+    const monthlyRate = 0.017; // 1.7% mensual mes vencido
     const monthlyPayment =
         (amount[0] * monthlyRate * Math.pow(1 + monthlyRate, term[0])) /
         (Math.pow(1 + monthlyRate, term[0]) - 1);
