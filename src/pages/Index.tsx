@@ -4,6 +4,7 @@ import AudienceSegmentation from "@/components/AudienceSegmentation";
 import BeneficiosTrufi from "@/components/BeneficiosTrufi";
 import FinancialAcademySection from "@/components/FinancialAcademySection";
 import SocialMediaFeed from "@/components/SocialMediaFeed";
+import TrufiAdelantaYGana from "@/components/TrufiAdelantaYGana";
 
 
 import CTASection from "@/components/CTASection";
@@ -23,6 +24,9 @@ const Index = () => {
 
         {/* 3. Beneficios Trufi - Nueva sección de seguros */}
         <BeneficiosTrufi />
+
+        {/* 4. Trufi Adelanta y Gana - Nueva sección de fidelización */}
+        <TrufiAdelantaYGana />
 
 
 

@@ -32,8 +32,8 @@ const Header = () => {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled
-          ? "bg-primary/95 backdrop-blur-md shadow-md py-2"
-          : "bg-transparent py-4"
+        ? "bg-primary/95 backdrop-blur-md shadow-md py-2"
+        : "bg-transparent py-4"
         }`}
     >
       <div className="container flex items-center justify-between h-auto">
@@ -47,40 +47,40 @@ const Header = () => {
         </Link>
 
         {/* NAVEGACIÓN ESCRITORIO */}
-        <nav className="hidden lg:flex items-center gap-5 xl:gap-6">
+        <nav className="hidden lg:flex items-center gap-4 xl:gap-5">
           <Link
             to="/"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-sm shadow-black/20 text-shadow-sm"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] shadow-black/20 text-shadow-sm whitespace-nowrap"
           >
             Inicio
           </Link>
 
           <Link
             to="/quienes-somos"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-sm text-shadow-sm"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] text-shadow-sm whitespace-nowrap"
           >
             Quiénes Somos
           </Link>
 
           {/* Productos Dropdown */}
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-white/90 hover:text-emerald-400 transition-colors font-medium text-sm outline-none text-shadow-sm">
+            <DropdownMenuTrigger className="flex items-center gap-1 text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] outline-none text-shadow-sm whitespace-nowrap">
               Productos
-              <ChevronDown className="w-4 h-4" />
+              <ChevronDown className="w-3 h-3" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-56 bg-white border-border">
               <DropdownMenuItem asChild>
-                <Link to="/pensionado" className="w-full cursor-pointer text-foreground hover:text-primary">
+                <Link to="/pensionado" className="w-full cursor-pointer text-foreground hover:text-primary text-xs">
                   Libranza Pensionados
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/docente" className="w-full cursor-pointer text-foreground hover:text-primary">
+                <Link to="/docente" className="w-full cursor-pointer text-foreground hover:text-primary text-xs">
                   Libranza Docentes
                 </Link>
               </DropdownMenuItem>
               <DropdownMenuItem asChild>
-                <Link to="/fuerza-publica" className="w-full cursor-pointer text-foreground hover:text-primary">
+                <Link to="/fuerza-publica" className="w-full cursor-pointer text-foreground hover:text-primary text-xs">
                   Fuerza Pública
                 </Link>
               </DropdownMenuItem>
@@ -88,16 +88,23 @@ const Header = () => {
           </DropdownMenu>
 
           <Link
-            to="/blog"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-sm text-shadow-sm"
+            to="/beneficios"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] text-shadow-sm whitespace-nowrap"
           >
-            Blog
+            Beneficios
+          </Link>
+
+          <Link
+            to="/blog"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] text-shadow-sm whitespace-nowrap"
+          >
+            Zona de Aprendizaje
           </Link>
 
           {/* Nuevo Item: Ponte al día */}
           <Link
             to="/zona-pagos"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-sm flex items-center gap-1 text-shadow-sm"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] flex items-center gap-1 text-shadow-sm whitespace-nowrap"
           >
             Ponte al día con Trufi
           </Link>
@@ -199,7 +206,7 @@ const Header = () => {
               className="text-white text-sm font-medium py-3 border-b border-white/10"
               onClick={() => setIsMenuOpen(false)}
             >
-              Blog
+              Zona de Aprendizaje
             </Link>
 
             <Link

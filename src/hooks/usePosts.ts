@@ -12,6 +12,7 @@ export interface Post {
   published: boolean;
   created_at: string;
   updated_at: string;
+  spotify_url: string | null;
 }
 
 export interface CreatePostData {
@@ -21,6 +22,7 @@ export interface CreatePostData {
   cover_image_url?: string;
   category: string;
   published?: boolean;
+  spotify_url?: string;
 }
 
 export interface UpdatePostData extends Partial<CreatePostData> {
@@ -85,7 +87,7 @@ export const useCreatePost = () => {
   return useMutation({
     mutationFn: async (postData: CreatePostData) => {
       const { data: { user } } = await supabase.auth.getUser();
-      
+
       const { data, error } = await supabase
         .from('posts')
         .insert({

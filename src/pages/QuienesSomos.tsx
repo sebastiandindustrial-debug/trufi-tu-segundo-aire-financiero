@@ -69,13 +69,13 @@ const QuienesSomos = () => {
                 Nuestra Tesis: <span className="text-secondary-foreground">Reincorporación Humana</span>
               </h2>
               <div className="relative group cursor-default">
-                <div className="absolute -left-4 -top-4 text-6xl text-primary/10 select-none group-hover:text-primary/20 transition-colors duration-500">"</div>
+                <div className="absolute -left-2 -top-2 text-6xl text-primary/10 select-none group-hover:text-primary/20 transition-colors duration-500">"</div>
                 <p className="text-xl md:text-2xl text-muted-foreground leading-relaxed font-medium transition-all duration-300 group-hover:text-foreground">
                   Si la banca tradicional te cerró la puerta, nosotros te damos la mano.
                   Nacimos para combatir la exclusión, no solo para hacer negocios.
-                  Ayudamos a más de <span className="text-primary font-bold inline-block hover:scale-110 transition-transform duration-300">5,000+</span> colombianos a limpiar su historial y volver a soñar.
+                  Queremos llegar a ayudar a más de <span className="text-primary font-bold inline-block hover:scale-110 transition-transform duration-300 mx-2">5,000</span> colombianos a limpiar su historial crediticio.
                 </p>
-                <div className="absolute -right-4 -bottom-4 text-6xl text-primary/10 select-none transform rotate-180 group-hover:text-primary/20 transition-colors duration-500">"</div>
+                <div className="absolute -right-2 -bottom-2 text-6xl text-primary/10 select-none transform rotate-180 group-hover:text-primary/20 transition-colors duration-500">"</div>
               </div>
             </div>
           </div>

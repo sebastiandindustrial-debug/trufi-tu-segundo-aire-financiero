@@ -5,35 +5,35 @@ import CreditSimulator from "@/components/CreditSimulator";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Check, Heart, Clock, Shield, Phone, ArrowLeft, Send, Sun } from "lucide-react";
+import { Check, Heart, Phone, Shield, Sun, ArrowLeft, Send, Sparkles } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "sonner";
 import { contactFormPensionadoSchema, type ContactFormPensionado } from "@/lib/validations";
-import segmentImage from "@/assets/segment-pensionado.jpg";
+import segmentImage from "@/assets/PensionadosPagina.jpg";
 import ProductShowcase from "@/components/ProductShowcase";
 import Pagadurias from "@/components/Pagadurias";
 
 const benefits = [
   {
-    icon: Clock,
-    title: "Aprobación en 24 horas",
-    description: "Proceso ágil diseñado para tu comodidad",
+    icon: Phone,
+    title: "Atención Preferencial",
+    description: "Línea directa para ti. Sin menús robóticos, te atiende una persona.",
   },
   {
     icon: Heart,
-    title: "Oportunidad para reportados",
-    description: "Creemos en tu segundo aire financiero",
+    title: "Segundo Aire Financiero",
+    description: "Tu historial pasado no te define. Te ayudamos a sanear reportes.",
   },
   {
     icon: Shield,
-    title: "Sin codeudor",
-    description: "Tu pensión es tu respaldo, sin trámites adicionales",
+    title: "Respaldo Garantizado",
+    description: "Tu pensión es tu mejor aval. Sin papeleos innecesarios.",
   },
   {
-    icon: Phone,
-    title: "Atención personalizada",
-    description: "Asesores especializados en tu bienestar financiero",
+    icon: Sun,
+    title: "Disfruta tu Retiro",
+    description: "Capital de libre inversión para viajar, remodelar o lo que sueñes.",
   },
 ];
 
@@ -83,68 +83,84 @@ const Pensionado = () => {
   return (
     <div className="min-h-screen bg-background">
       <Header />
-      <main className="pt-20 md:pt-24">
-        {/* Navegación rápida */}
-        <div className="container py-4">
-          <div className="flex items-center gap-4 flex-wrap">
-            <Link to="/">
-              <Button variant="ghost" size="sm" className="gap-2">
-                <ArrowLeft className="w-4 h-4" />
-                Volver al inicio
-              </Button>
-            </Link>
-            <div className="h-4 w-px bg-border hidden sm:block" />
-            <div className="flex gap-2 flex-wrap">
-              <Link to="/docente">
-                <Button variant="outline" size="sm" className="text-xs">Zona Docentes</Button>
-              </Link>
-              <Link to="/fuerza-publica">
-                <Button variant="outline" size="sm" className="text-xs">Zona Fuerza Pública</Button>
-              </Link>
-            </div>
-          </div>
-        </div>
+      <main className="pt-0"> {/* Removed pt-20 to allow hero to touch top */}
 
-        {/* Hero Section - Con imagen y color distintivo */}
-        <section className="py-12 md:py-20 relative overflow-hidden">
-          {/* Background con imagen del segmento */}
-          <div className="absolute inset-0">
+        {/* Hero Section - Pensionados */}
+        <section className="relative min-h-[600px] lg:min-h-[80vh] pt-20 md:pt-28 pb-8 md:pb-12 overflow-hidden flex flex-col justify-center">
+          {/* Background con imagen del segmento covering everything */}
+          <div className="absolute inset-0 z-0">
             <img
               src={segmentImage}
               alt="Pensionados felices"
-              className="w-full h-full object-cover opacity-20"
+              className="w-full h-full object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-br from-orange-50 via-background to-background" />
+            {/* Gradient Overlay: Darker on left for text legibility, transparent on right for image clarity */}
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/60 to-transparent" />
           </div>
 
-          <div className="container relative">
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <div className="space-y-6">
+          <div className="container relative z-10 h-full flex flex-col">
+            {/* Navegación rápida - inside Hero */}
+            <div className="mb-8 md:mb-12">
+              <div className="flex items-center gap-4 flex-wrap">
+                <Link to="/">
+                  <Button variant="ghost" size="sm" className="gap-2 text-white/90 hover:text-white hover:bg-white/10 transition-colors">
+                    <ArrowLeft className="w-4 h-4" />
+                    Volver al inicio
+                  </Button>
+                </Link>
+                <div className="h-4 w-px bg-white/20 hidden sm:block" />
+                <div className="flex gap-2 flex-wrap">
+                  <Link to="/docente">
+                    <Button variant="outline" size="sm" className="text-xs border-white/20 bg-white/5 text-white/90 hover:bg-white/10 hover:text-white backdrop-blur-sm transition-all">Zona Docentes</Button>
+                  </Link>
+                  <Link to="/fuerza-publica">
+                    <Button variant="outline" size="sm" className="text-xs border-white/20 bg-white/5 text-white/90 hover:bg-white/10 hover:text-white backdrop-blur-sm transition-all">Zona Fuerza Pública</Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid lg:grid-cols-2 gap-8 lg:gap-10 items-center flex-1">
+              <div className="space-y-6 max-w-xl">
                 {/* Badge con color distintivo */}
-                <div className={`inline-flex items-center gap-2 px-4 py-2 ${accentBg} ${accentBorder} border rounded-full`}>
-                  <Sun className={`w-4 h-4 ${accentText}`} />
-                  <span className={`${accentText} font-semibold text-sm`}>
-                    Créditos para Pensionados
+                <div className={`inline-flex items-center gap-2 px-4 py-1.5 bg-orange-500/10 backdrop-blur-md border border-orange-500/20 rounded-full`}>
+                  <Sun className={`w-4 h-4 text-orange-400`} />
+                  <span className={`text-orange-100 font-semibold text-sm tracking-wide`}>
+                    Pensionados
                   </span>
                 </div>
-                <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-tight">
-                  Tu tranquilidad financiera está{" "}
-                  <span className={accentText}>garantizada</span>
-                </h1>
-                <p className="text-lg md:text-xl text-muted-foreground">
-                  Después de años de trabajo, mereces disfrutar sin preocupaciones.
-                  En TRUFI creemos en tu segundo aire financiero, incluso si estás reportado.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-4">
+
+                <div className="space-y-4">
+                  <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight tracking-tight">
+                    Tranquilidad y <br />
+                    Respaldo para ti
+                  </h1>
+                  <p className="text-lg md:text-xl text-white/80 leading-relaxed max-w-lg">
+                    Dedicaste tu vida a trabajar, ahora déjanos trabajar por ti. Te ofrecemos un "Segundo Aire Financiero" con trato preferencial.
+                  </p>
+                </div>
+
+                {/* Highlight: Llamada Humana */}
+                <div className="bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-5 flex items-center gap-5 hover:bg-white/10 transition-colors cursor-default group">
+                  <div className="bg-orange-500 rounded-full p-3 text-white shadow-lg group-hover:scale-110 transition-transform duration-300">
+                    <Phone className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-white text-base">¿Prefieres hablar con alguien?</h4>
+                    <p className="text-sm text-white/60">Nuestros asesores senior te atienden sin esperas.</p>
+                  </div>
+                  <Button variant="ghost" size="sm" className="ml-auto text-orange-300 hover:text-orange-200 hover:bg-white/5">
+                    Solicitar llamada &rarr;
+                  </Button>
+                </div>
+
+                <div className="flex flex-col sm:flex-row gap-4 pt-2">
                   <Button
                     variant="cta"
                     size="xl"
-                    className="bg-orange-500 hover:bg-orange-600"
+                    className="bg-orange-600 hover:bg-orange-700 text-white font-bold text-lg px-8 py-6 shadow-xl shadow-orange-900/20"
                   >
-                    Solicitar Ahora
-                  </Button>
-                  <Button variant="outline" size="xl">
-                    Llamar a un Asesor
+                    Quiero mi asesoría humana
                   </Button>
                 </div>
               </div>
@@ -155,37 +171,64 @@ const Pensionado = () => {
           </div>
         </section>
 
-        {/* Benefits Section - Mayor padding */}
-        <section className="py-14 md:py-20">
+        {/* Benefits Section - Facilidades para ti */}
+        <section className="py-10 md:py-14">
           <div className="container">
-            <h2 className="text-2xl md:text-3xl font-bold text-center mb-12">
-              Beneficios Exclusivos para Pensionados
+            <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+              Facilidades para ti
             </h2>
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {benefits.map((benefit, index) => (
                 <div
                   key={index}
-                  className={`bg-card border ${accentBorder} rounded-2xl p-7 text-center hover:shadow-elevated transition-all duration-300`}
+                  className={`bg-card border ${accentBorder} rounded-2xl p-7 text-center hover:shadow-elevated transition-all duration-300 group`}
                 >
-                  <div className={`w-14 h-14 ${accentBg} rounded-xl flex items-center justify-center mx-auto mb-5`}>
-                    <benefit.icon className={`w-7 h-7 ${accentText}`} />
+                  <div className={`w-20 h-20 ${accentBg} rounded-full flex items-center justify-center mx-auto mb-5 group-hover:scale-110 transition-transform`}>
+                    <benefit.icon className={`w-10 h-10 ${accentText}`} />
                   </div>
-                  <h3 className="font-bold text-foreground mb-3">{benefit.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{benefit.description}</p>
+                  <h3 className="font-bold text-foreground mb-3 text-lg">{benefit.title}</h3>
+                  <p className="text-base text-muted-foreground leading-relaxed">{benefit.description}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Requirements Section - Mayor padding */}
-        <section className="py-14 md:py-20 bg-orange-50/50">
+        {/* Social Proof - Específico Pensionado */}
+        <section className="py-10 md:py-14 bg-orange-50/50 relative overflow-hidden">
+          {/* Decorative Elements */}
+          <div className="absolute top-0 left-0 w-64 h-64 bg-orange-200/20 rounded-fullblur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+          <div className="container">
+            <div className="max-w-4xl mx-auto bg-card border border-orange-100 shadow-xl rounded-3xl p-8 md:p-12 relative">
+              <div className="absolute top-6 left-6 text-6xl text-orange-200 font-serif opacity-50">"</div>
+              <div className="flex flex-col md:flex-row gap-8 items-center">
+                <div className="shrink-0">
+                  <div className="w-24 h-24 rounded-full overflow-hidden border-4 border-orange-100 shadow-inner">
+                    <img src="/assets/segment-pensionado.jpg" alt="Doña Cecilia" className="w-full h-full object-cover" />
+                  </div>
+                </div>
+                <div className="text-center md:text-left">
+                  <p className="text-lg md:text-xl text-foreground font-medium italic mb-4">
+                    Pensé que por estar reportada ya nadie me prestaría atención. En TRUFI no solo me escucharon, me trataron con un respeto y cariño que no encontré en ningún banco. Pude reformar mi casa y ver felices a mis nietos.
+                  </p>
+                  <div>
+                    <h4 className="font-bold text-orange-800">Cecilia R.</h4>
+                    <p className="text-sm text-muted-foreground">Pensionada Colpensiones - 72 años</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Requirements Section */}
+        <section className="py-10 md:py-14">
           <div className="container">
             <div className="max-w-3xl mx-auto">
-              <h2 className="text-2xl md:text-3xl font-bold text-center mb-10">
-                Requisitos Sencillos
+              <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
+                Lo que necesitas para iniciar
               </h2>
-              <div className={`bg-card border ${accentBorder} rounded-2xl p-8 md:p-10`}>
+              <div className={`bg-card border ${accentBorder} rounded-2xl p-6 md:p-8`}>
                 <ul className="space-y-5">
                   {requirements.map((req, index) => (
                     <li key={index} className="flex items-start gap-4">
@@ -202,13 +245,17 @@ const Pensionado = () => {
         </section>
 
         {/* Product Showcase */}
-        <ProductShowcase />
+        <div className="py-4">
+          <ProductShowcase />
+        </div>
 
         {/* Pagadurias */}
-        <Pagadurias />
+        <div className="py-4">
+          <Pagadurias segment="pensionado" />
+        </div>
 
-        {/* Formulario de Asistencia - Más discreto con fondo gris */}
-        <section className="py-14 md:py-20 bg-muted/40">
+        {/* Formulario de Asistencia */}
+        <section className="py-10 md:py-14 bg-muted/40">
           <div className="container">
             <div className="max-w-2xl mx-auto">
               <div className="text-center mb-8">
@@ -216,11 +263,11 @@ const Pensionado = () => {
                   ¿Necesitas ayuda personalizada?
                 </h2>
                 <p className="text-muted-foreground text-sm">
-                  Déjanos tus datos y un asesor especializado te contactará
+                  Déjanos tus datos y un asesor humano te contactará a la brevedad.
                 </p>
               </div>
 
-              <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-7 md:p-9 space-y-5">
+              <form onSubmit={handleSubmit} className="bg-card border border-border rounded-2xl p-7 md:p-9 space-y-5 shadow-lg">
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div className="space-y-2">
                     <label className="text-sm font-medium text-foreground">Nombre completo</label>
@@ -284,7 +331,7 @@ const Pensionado = () => {
                 </div>
                 <Button type="submit" variant="outline" size="lg" className="w-full gap-2">
                   <Send className="w-4 h-4" />
-                  Solicitar Asistencia
+                  Solicitar Asistencia Humana
                 </Button>
               </form>
             </div>
@@ -292,18 +339,20 @@ const Pensionado = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-14 md:py-20 bg-gradient-to-br from-orange-500 to-orange-600">
-          <div className="container text-center">
+        <section className="py-10 md:py-14 bg-gradient-to-br from-orange-500 to-orange-600 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-1/3 h-full bg-white/10 skew-x-12 translate-x-12"></div>
+          <div className="container text-center relative z-10">
             <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
               ¿Listo para tu segundo aire financiero?
             </h2>
             <p className="text-white/90 mb-8 max-w-xl mx-auto">
-              Nuestros asesores están disponibles para ayudarte en cada paso del proceso.
+              Nuestros asesores están disponibles para ayudarte en cada paso del proceso con paciencia y calidez.
             </p>
             <Button
               size="xl"
-              className="bg-white text-orange-600 hover:bg-white/90 font-bold"
+              className="bg-white text-orange-600 hover:bg-white/90 font-bold shadow-2xl"
             >
+              <Sparkles className="w-4 h-4 mr-2" />
               Solicitar Crédito Ahora
             </Button>
           </div>

@@ -1,6 +1,6 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap, Shield, Building2 } from "lucide-react";
+import { GraduationCap, Shield, Building2, Medal } from "lucide-react";
 
 // Placeholder data for logos. In a real scenario, these would be image paths.
 const educationLogos = [
@@ -16,16 +16,19 @@ const educationLogos = [
 const pensionLogos = [
     { name: "Colpensiones", color: "bg-green-50 text-green-800" },
     { name: "Fiduprevisora", color: "bg-red-50 text-red-800" },
-    { name: "CREMIL", color: "bg-blue-50 text-blue-800" },
-    { name: "CASUR", color: "bg-emerald-50 text-emerald-800" },
-    { name: "MINDEFENSA", color: "bg-blue-50 text-blue-900" },
-    { name: "CAGEN", color: "bg-gray-100 text-gray-800" },
     { name: "FOPEP", color: "bg-orange-50 text-orange-800" },
     { name: "Colfondos", color: "bg-blue-50 text-blue-600" },
     { name: "Porvenir", color: "bg-yellow-50 text-yellow-800" },
     { name: "Seguros Bolívar", color: "bg-green-50 text-green-700" },
     { name: "Seguros Alfa", color: "bg-blue-50 text-blue-500" },
     { name: "Positiva", color: "bg-orange-50 text-orange-600" },
+];
+
+const fuerzaPublicaLogos = [
+    { name: "CREMIL", color: "bg-blue-50 text-blue-800" },
+    { name: "CASUR", color: "bg-emerald-50 text-emerald-800" },
+    { name: "MINDEFENSA", color: "bg-blue-50 text-blue-900" },
+    { name: "CAGEN", color: "bg-gray-100 text-gray-800" },
 ];
 
 const LogoPlaceholder = ({ name, color }: { name: string; color: string }) => (
@@ -39,7 +42,60 @@ const LogoPlaceholder = ({ name, color }: { name: string; color: string }) => (
     </div>
 );
 
-const Pagadurias = () => {
+type PagaduriasProps = {
+    segment?: 'docente' | 'pensionado' | 'fuerza-publica';
+};
+
+const Pagadurias = ({ segment }: PagaduriasProps) => {
+    // If a segment is provided, render only that content
+    if (segment) {
+        let logos: typeof pensionLogos = [];
+        let title = "";
+        let description = "";
+
+        switch (segment) {
+            case 'docente':
+                logos = educationLogos;
+                title = "Secretarías de Educación";
+                description = "Convenios con las principales secretarías certificadas del país.";
+                break;
+            case 'pensionado':
+                logos = pensionLogos;
+                title = "Fondos de Pensiones";
+                description = "Convenios con Colpensiones, FOPEP y los principales fondos privados.";
+                break;
+            case 'fuerza-publica':
+                logos = fuerzaPublicaLogos;
+                title = "Cajas de Retiro y Mindefensa";
+                description = "Entidades oficiales para miembros activos y retirados.";
+                break;
+        }
+
+        return (
+            <section className="py-16 md:py-24 bg-gray-50/50 overflow-hidden">
+                <div className="container px-4 md:px-6">
+                    <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                        <Badge variant="outline" className="px-4 py-1.5 border-primary/20 text-primary text-sm font-semibold tracking-wide uppercase bg-white">
+                            Respaldo Garantizado
+                        </Badge>
+                        <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-gray-900">
+                            {title}
+                        </h2>
+                        <p className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto">
+                            {description}
+                        </p>
+                    </div>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 max-w-5xl mx-auto">
+                        {logos.map((logo, idx) => (
+                            <LogoPlaceholder key={idx} name={logo.name} color={logo.color} />
+                        ))}
+                    </div>
+                </div>
+            </section>
+        );
+    }
+
+    // Default view (with Tabs)
     return (
         <section className="py-24 bg-gray-50/50 overflow-hidden">
             <div className="container px-4 md:px-6">
@@ -88,7 +144,8 @@ const Pagadurias = () => {
 
                     <TabsContent value="pensionados" className="focus-visible:outline-none focus-visible:ring-0 mt-0 animate-in fade-in-50 slide-in-from-bottom-4 duration-500">
                         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-                            {pensionLogos.map((logo, idx) => (
+                            {/* Combining pension and fp for the 'all' view */}
+                            {[...pensionLogos, ...fuerzaPublicaLogos].map((logo, idx) => (
                                 <LogoPlaceholder key={idx} name={logo.name} color={logo.color} />
                             ))}
                         </div>

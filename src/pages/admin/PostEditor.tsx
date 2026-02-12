@@ -52,6 +52,7 @@ const PostEditor = () => {
     cover_image_url: '',
     category: 'General',
     published: false,
+    spotify_url: '',
   });
 
   useEffect(() => {
@@ -63,6 +64,7 @@ const PostEditor = () => {
         cover_image_url: existingPost.cover_image_url || '',
         category: existingPost.category,
         published: existingPost.published,
+        spotify_url: existingPost.spotify_url || '',
       });
     }
   }, [existingPost]);
@@ -214,6 +216,29 @@ Puedes usar:
                 <p className="text-xs text-muted-foreground">
                   Tip: Usa **texto** para negrita, *texto* para cursiva, y # para títulos.
                 </p>
+              </div>
+
+              <div className="space-y-2">
+                <div className="flex items-center gap-2">
+                  <Label htmlFor="spotify_url" className="text-base font-semibold">
+                    Spotify Embed URL (Opcional)
+                  </Label>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <HelpCircle className="w-4 h-4 text-muted-foreground cursor-help" />
+                    </TooltipTrigger>
+                    <TooltipContent className="max-w-xs">
+                      <p>Pega aquí el enlace de inserción de Spotify para podcasts. Si se proporciona, se mostrará el reproductor en el blog.</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </div>
+                <Input
+                  id="spotify_url"
+                  placeholder="https://open.spotify.com/embed/episode/..."
+                  value={formData.spotify_url || ''}
+                  onChange={(e) => setFormData({ ...formData, spotify_url: e.target.value })}
+                  disabled={isLoading}
+                />
               </div>
             </CardContent>
           </Card>
