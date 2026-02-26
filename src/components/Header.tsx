@@ -40,7 +40,7 @@ const Header = () => {
         <Link to="/" className="flex items-center">
           <img
             alt="TRUFI - Confianza Inmediata"
-            className="h-10 md:h-14 w-auto object-contain transition-transform hover:scale-105"
+            className={`w-auto object-contain transition-transform hover:scale-105 ${location.pathname === '/quienes-somos' ? 'h-8 md:h-10' : 'h-10 md:h-14'}`}
             src="/lovable-uploads/Logo-trufi-menu.png"
           />
         </Link>
@@ -49,23 +49,23 @@ const Header = () => {
         <nav className="hidden lg:flex items-center gap-4 xl:gap-5">
           <Link
             to="/"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] shadow-black/20 text-shadow-sm whitespace-nowrap"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[14px] shadow-black/20 text-shadow-sm whitespace-nowrap"
           >
             Inicio
           </Link>
 
           <Link
             to="/quienes-somos"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] text-shadow-sm whitespace-nowrap"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[14px] text-shadow-sm whitespace-nowrap"
           >
             Quiénes Somos
           </Link>
 
           {/* Productos Dropdown */}
           <DropdownMenu>
-            <DropdownMenuTrigger className="flex items-center gap-1 text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] outline-none text-shadow-sm whitespace-nowrap">
+            <DropdownMenuTrigger className="flex items-center gap-1 text-white/90 hover:text-emerald-400 transition-colors font-medium text-[14px] outline-none text-shadow-sm whitespace-nowrap">
               Productos
-              <ChevronDown className="w-3 h-3" />
+              <ChevronDown className="w-4 h-4" />
             </DropdownMenuTrigger>
             <DropdownMenuContent align="start" className="w-56 bg-white border-border">
               <DropdownMenuItem asChild>
@@ -88,29 +88,29 @@ const Header = () => {
 
           <Link
             to="/beneficios"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] text-shadow-sm whitespace-nowrap"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[14px] text-shadow-sm whitespace-nowrap"
           >
             Beneficios
           </Link>
 
           <Link
             to="/blog"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] text-shadow-sm whitespace-nowrap"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[14px] text-shadow-sm whitespace-nowrap"
           >
-            Zona de Aprendizaje
+            Academia TRUFI
           </Link>
 
           {/* Nuevo Item: Ponte al día */}
           <Link
             to="/zona-pagos"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] flex items-center gap-1 text-shadow-sm whitespace-nowrap"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[14px] flex items-center gap-1 text-shadow-sm whitespace-nowrap"
           >
             Ponte Al Día
           </Link>
 
           <Link
             to="/pqr"
-            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[11px] flex items-center gap-1 text-shadow-sm whitespace-nowrap"
+            className="text-white/90 hover:text-emerald-400 transition-colors font-medium text-[14px] flex items-center gap-1 text-shadow-sm whitespace-nowrap"
           >
             PQRs
           </Link>
@@ -122,7 +122,7 @@ const Header = () => {
 
           {/* 1. Zona Clientes (Ahora primero) */}
           <Button
-            className="bg-white text-primary hover:bg-white/90 font-bold text-sm px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
+            className="bg-white text-primary hover:bg-white/90 font-bold text-[13px] px-5 py-2 rounded-full shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
             asChild
           >
             <a href="https://app.trufi.com.co/" target="_blank" rel="noopener noreferrer">
@@ -134,7 +134,7 @@ const Header = () => {
           {/* 2. Portal Comercial (Ahora segundo e interno) */}
           <Link to="/portal-comercial">
             <Button
-              className="bg-[#78c0b3] text-white font-bold text-sm px-6 py-2.5 rounded-full shadow-lg hover:shadow-xl hover:bg-[#78c0b3]/90 hover:-translate-y-0.5 transition-all"
+              className="bg-[#78c0b3] text-white font-bold text-[13px] px-5 py-2 rounded-full shadow-lg hover:shadow-xl hover:bg-[#78c0b3]/90 hover:-translate-y-0.5 transition-all"
             >
               <Briefcase className="w-4 h-4 mr-2" />
               Portal Comercial

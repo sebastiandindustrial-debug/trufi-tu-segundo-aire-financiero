@@ -101,6 +101,23 @@ const AudienceSegmentation = () => {
             const config = getSegmentConfig(item.enlace);
             const Icon = config.icon;
 
+            // Overrides according to client specs
+            let title = item.titulo;
+            let description = item.descripcion;
+            let buttonText = "Ver beneficios exclusivos";
+
+            if (item.enlace.includes('pensionado')) {
+              title = "Soy Pensionado";
+              description = "Para quienes disfrutan su retiro, pero buscan estabilidad extra, con descuento directo de tu mesada pensional para mayor tranquilidad.";
+              buttonText = "Descubre Tus Opciones";
+            } else if (item.enlace.includes('docente')) {
+              description = "Diseñado para educadores del sector público que necesitan flexibilidad financiera, alineada con tu compromiso diario.";
+              buttonText = "Descubre Tus Opciones";
+            } else if (item.enlace.includes('fuerza')) {
+              description = "Opciones accesibles para héroes, reconociendo tu servicio con procesos simples y confiables.";
+              buttonText = "Descubre Tus Opciones";
+            }
+
             return (
               <Link key={item.id} to={item.enlace} className="block group h-full">
                 <Card className={`h-full border border-border/50 shadow-card hover:-translate-y-2 transition-all duration-500 bg-card overflow-hidden rounded-[2rem] flex flex-col ${config.shadowClass} transform-gpu isolation-isolate`}>
@@ -108,7 +125,7 @@ const AudienceSegmentation = () => {
                   <div className="relative h-64 overflow-hidden">
                     <img
                       src={getFallbackImage(item.titulo)}
-                      alt={item.titulo}
+                      alt={title}
                       className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110"
                     />
                     {/* Dynamic Gradient Overlay */}
@@ -120,7 +137,7 @@ const AudienceSegmentation = () => {
                         <Icon className="w-6 h-6 stroke-[2.5]" />
                       </div>
                       <h3 className="text-2xl md:text-3xl font-bold text-white leading-none">
-                        {item.titulo}
+                        {title}
                       </h3>
                     </div>
                   </div>
@@ -128,14 +145,14 @@ const AudienceSegmentation = () => {
                   {/* Content */}
                   <div className="p-8 flex flex-col flex-grow">
                     <p className="text-muted-foreground mb-8 leading-relaxed text-base flex-grow">
-                      {item.descripcion}
+                      {description}
                     </p>
 
                     <Button
                       variant="ghost"
                       className={`w-full justify-between font-bold text-base py-6 rounded-xl transition-colors ${config.colorClass} bg-secondary/10 group-hover:bg-secondary/20`}
                     >
-                      Ver beneficios exclusivos
+                      {buttonText}
                       <ChevronRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
                     </Button>
                   </div>

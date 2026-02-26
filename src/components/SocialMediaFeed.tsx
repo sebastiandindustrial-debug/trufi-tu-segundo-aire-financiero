@@ -87,7 +87,7 @@ const SocialMediaFeed = () => {
                             </span>
                         </h2>
                         <p className="text-muted-foreground mt-4 text-lg">
-                            Sigue nuestra conversación digital. Tips, noticias y casos de éxito en tiempo real.
+                            Conocerás tips financieros, noticias y soporte directo para pensionados, docentes y fuerza pública.
                         </p>
                     </div>
 

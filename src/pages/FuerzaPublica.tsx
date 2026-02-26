@@ -44,7 +44,7 @@ const requirements = [
   "Tener asignación de retiro activa",
   "Cédula de ciudadanía",
   "Desprendible de pago de los últimos 3 meses (Asignación de retiro)",
-  "No reportado en centrales de riesgo (opcional según perfil)",
+  "Sin codeudor",
 ];
 
 const institutions = [

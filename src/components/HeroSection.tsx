@@ -50,8 +50,8 @@ const HeroSection = () => {
             </h1>
 
             {/* Subtitle */}
-            <p className="text-lg text-white/80 leading-relaxed">
-              ¿Reportado en centrales de riesgo? En TRUFI creemos en las segundas oportunidades. Créditos de libranza rápidos, seguros y 100% digitales.
+            <p className="text-lg md:text-xl text-white/90 leading-relaxed font-medium">
+              En TRUFI, adaptamos soluciones a tu realidad única con créditos que honran tu trayectoria y facilitan tu acceso financiero.
             </p>
 
             {/* Benefits Grid */}

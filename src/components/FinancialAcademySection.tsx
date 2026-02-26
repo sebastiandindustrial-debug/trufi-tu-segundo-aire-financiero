@@ -35,7 +35,7 @@ const FinancialAcademySection = () => {
                             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-secondary/10 border border-secondary/30 w-fit backdrop-blur-md animate-pulse shadow-[0_0_15px_hsl(var(--secondary)/0.3)]">
                                 <BookOpen className="w-4 h-4 text-secondary" />
                                 <span className="text-xs font-bold text-secondary tracking-wider uppercase">
-                                    Zona de Aprendizaje
+                                    Academia TRUFI
                                 </span>
                             </div>
 

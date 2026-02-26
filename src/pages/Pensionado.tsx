@@ -43,7 +43,7 @@ const requirements = [
   "Ser pensionado activo (Colpensiones, FOPEP, o fondo privado)",
   "Cédula de ciudadanía vigente",
   "Desprendible de pago de los últimos 3 meses",
-  "Edad hasta 85 años al momento de finalizar el crédito",
+  "Edad máxima: 84 años al finalizar el crédito",
 ];
 
 const Pensionado = () => {
@@ -201,7 +201,7 @@ const Pensionado = () => {
         <section className="py-10 md:py-14">
           <div className="container">
             <h2 className="text-2xl md:text-3xl font-bold text-center mb-8">
-              Facilidades para ti
+              ¿Por Qué Los Pensionados Eligen TRUFI?
             </h2>
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
               {benefits.map((benefit, index) => (
@@ -278,7 +278,7 @@ const Pensionado = () => {
                 title: "Crédito para",
                 highlight: "Pensionados",
                 description: "¿Un viaje soñado, remodelar tu casa o unificas deudas? Disfruta tu retiro sin preocupaciones financieras.",
-                features: ["Aprobación hasta los 84 años", "Sin codeudor (según perfil)", "Descuento directo de mesada", "Compra de cartera al 100%"],
+                features: ["Aprobación hasta los 84 años", "Sin codeudor", "Descuento directo de mesada", "Compra de cartera al 100%"],
                 image: "/lovable-uploads/happy_client_credit.png",
                 badge: "Disfruta tu retiro",
                 badgeColor: "bg-orange-50 text-orange-600",

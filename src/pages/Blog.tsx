@@ -60,10 +60,10 @@ const Blog = () => {
 
           <div className="container relative z-10 text-center max-w-4xl px-4">
             <h1 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
-              Explora Nuestra Zona de Aprendizaje
+              Academia TRUFI - Tu Beneficio Exclusivo como Cliente
             </h1>
             <p className="text-lg md:text-xl text-white/90 max-w-2xl mx-auto leading-relaxed">
-              En nuestra zona de aprendizaje, te invitamos a explorar una amplia gama de temas relacionados con finanzas personales, créditos, inversiones y mucho más. Únete a nuestra comunidad y potenciar tu conocimiento financiero.
+              Por tener un crédito con TRUFI, accedes SIN COSTO ADICIONAL a nuestra plataforma. En nuestra zona de aprendizaje, te invitamos a explorar una amplia gama de temas relacionados con finanzas personales, créditos, inversiones y mucho más. Únete a nuestra comunidad y potencia tu conocimiento financiero.
             </p>
           </div>
         </section>

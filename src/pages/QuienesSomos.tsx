@@ -94,14 +94,12 @@ const QuienesSomos = () => {
                       <UserCheck className="w-8 h-8 text-primary animate-bounce-slow" />
                     </div>
                     <div>
-                      <h4 className="font-bold font-archive text-lg">Cero Fricción, 100% Empatía</h4>
+                      <h4 className="font-bold font-archive text-lg">Cero Complicaciones, Máxima Empatía</h4>
                       <p className="text-sm text-muted-foreground">Te escuchamos, no te juzgamos</p>
                     </div>
                   </div>
                   <p className="text-muted-foreground mb-6">
-                    Olvídate de los chatbots fríos que no entienden tu situación.
-                    Detrás de cada solicitud hay un asesor experto listo para destrabar tu proceso
-                    y guiarte paso a paso.
+                    Olvídate de procesos fríos y burocráticos. En Trufi, combinamos tecnología avanzada con un toque humano para destrabar tu proceso y guiarte paso a paso.
                   </p>
                   <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all hover:scale-[1.02]">
                     Hablar con un asesor real
@@ -335,9 +333,9 @@ const QuienesSomos = () => {
 
             <div className="grid md:grid-cols-3 gap-6">
               {[
-                { name: "Carlos M.", role: "Docente Pensionado", quote: "Pude reformar mi casa después de años esperando.", image: "/assets/segment-docente.jpg", delay: "delay-100" },
-                { name: "María F.", role: "Pensionada Colpensiones", quote: "Por fin pude viajar a conocer el mar con mis nietos.", image: "/assets/segment-pensionado.jpg", delay: "delay-200" },
-                { name: "Jorge R.", role: "Retirado Fuerza Pública", quote: "Saneé mis deudas y recuperé mi tranquilidad.", image: "/assets/segment-fuerza-publica.jpg", delay: "delay-300" },
+                { name: "Carlos M.", role: "Docente Pensionado", quote: "Finalmente reformé mi casa después de años posponiéndolo.", image: "/assets/segment-docente.jpg", delay: "delay-100" },
+                { name: "María F.", role: "Pensionada de Colpensiones", quote: "Trufi me dio la oportunidad de viajar con mi familia, algo que parecía imposible.", image: "/assets/segment-pensionado.jpg", delay: "delay-200" },
+                { name: "Jorge R.", role: "Retirado de las Fuerzas Públicas", quote: "Gracias a Trufi, pude sanear mis deudas y recuperar mi paz financiera.", image: "/assets/segment-fuerza-publica.jpg", delay: "delay-300" },
               ].map((story, i) => (
                 <div key={i} className={`group relative overflow-hidden rounded-2xl aspect-[9/16] md:aspect-[4/5] shadow-md cursor-pointer animate-in fade-in zoom-in-95 duration-700 fill-mode-both ${story.delay}`}>
                   <img

@@ -276,7 +276,7 @@ const Docente = () => {
                 title: "Inversión en tu",
                 highlight: "Futuro",
                 description: "¿Doctorado, maestría o cursos de ascenso? Invierte en tu educación y crecimiento profesional sin aplazar tus sueños.",
-                features: ["Financiación de matrícula y sostenimiento", "Aprobación rápida en temporada de matrículas", "Compra de cartera educativa", "Plazos ajustados a tu capacidad"],
+                features: ["Financiación de matrícula y sostenimiento", "Sin codeudor", "Compra de cartera educativa", "Plazos ajustados a tu capacidad"],
                 image: "/lovable-uploads/happy_client_credit.png",
                 badge: "Superación Personal",
                 badgeColor: "bg-blue-50 text-blue-600",
