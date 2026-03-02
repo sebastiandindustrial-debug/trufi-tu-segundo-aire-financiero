@@ -9,7 +9,7 @@ const FinancialAcademySection = () => {
             <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
 
             <div className="container px-4 md:px-6 relative z-10">
-                <div className="group relative bg-gradient-to-br from-[#1A0B3B] via-[#2D1B69] to-[#120529] rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 transition-transform duration-500 hover:scale-[1.01] hover:shadow-primary/30 min-h-[550px] flex flex-col lg:flex-row">
+                <div className="group relative bg-gradient-to-br from-[#1A0B3B] via-[#2D1B69] to-[#120529] rounded-[3rem] overflow-hidden shadow-2xl border border-white/10 min-h-[550px] flex flex-col lg:flex-row">
 
                     {/* Animated Border Glow */}
                     <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000 -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] pointer-events-none z-20" />
@@ -18,9 +18,9 @@ const FinancialAcademySection = () => {
                     <div className="lg:w-5/12 relative h-[350px] lg:h-auto overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-tr from-[#1A0B3B]/80 via-transparent to-transparent z-10 lg:bg-gradient-to-r lg:from-transparent lg:to-[#1A0B3B]/90" />
                         <img
-                            src="/lovable-uploads/financial_education_lifestyle_1770146202347.png"
+                            src="/lovable-uploads/AcademiaTrufi.jpg"
                             alt="Educación Financiera Trufi"
-                            className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
+                            className="absolute inset-0 w-full h-full object-cover"
                         />
                     </div>
 

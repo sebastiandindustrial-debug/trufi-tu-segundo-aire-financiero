@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "sonner";
 import { contactFormFuerzaPublicaSchema, type ContactFormFuerzaPublica } from "@/lib/validations";
-import segmentImage from "@/assets/segment-fuerza-publica.jpg";
+
 import ProductShowcase from "@/components/ProductShowcase";
 import Pagadurias from "@/components/Pagadurias";
 import { supabase } from "@/integrations/supabase/client";
@@ -124,12 +124,12 @@ const FuerzaPublica = () => {
           {/* Background con imagen del segmento */}
           <div className="absolute inset-0 z-0">
             <img
-              src={segmentImage}
+              src="/lovable-uploads/policiamujer2.jpg"
               alt="Miembro de la Fuerza Pública"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-cover object-top"
             />
             {/* Military Green Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-r from-[#5D6532]/95 via-[#5D6532]/70 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[#5D6532]/65 via-[#5D6532]/35 to-transparent" />
           </div>
 
           <div className="container relative z-10 h-full flex flex-col">
@@ -304,7 +304,8 @@ const FuerzaPublica = () => {
                 highlight: "Héroes",
                 description: "¿Un proyecto personal, negocio familiar o unificación de deudas? Reconocemos tu servicio con tasas preferenciales.",
                 features: ["Descuento directo de nómina/asignación", "Sin codeudor (según grado/rango)", "Atención prioritaria", "Plazos extendidos"],
-                image: "/lovable-uploads/happy_client_credit.png",
+                image: "/lovable-uploads/policialibreinver.jpg",
+                imageClassName: "object-right-bottom",
                 badge: "Honor y Servicio",
                 badgeColor: "bg-[#5D6532]/10 text-[#5D6532]",
                 badgeDotColor: "bg-[#5D6532]",
@@ -318,7 +319,7 @@ const FuerzaPublica = () => {
                 highlight: "Ti y tu Familia",
                 description: "Haz realidad el sueño de tener vivienda propia o mejorar la actual. Tu estabilidad laboral es tu mejor garantía.",
                 features: ["Financiación de vivienda nueva/usada", "Remodelación y acabados", "Estudio de títulos ágil", "Acompañamiento jurídico"],
-                image: "/lovable-uploads/happy_client_house.png",
+                image: "/lovable-uploads/policiavivienda.jpg",
                 badge: "Tu Hogar Seguro",
                 badgeColor: "bg-[#5D6532]/10 text-[#5D6532]",
                 badgeDotColor: "bg-[#5D6532]",
@@ -332,7 +333,8 @@ const FuerzaPublica = () => {
                 highlight: "Movilidad",
                 description: "Facilitamos la compra de tu vehículo particular o para negocio. Disfruta de la libertad que te mereces.",
                 features: ["Vehículos comerciales y particulares", "Aprobación simplificada", "Tasas competitivas", "Plazos cómodos"],
-                image: "/lovable-uploads/happy_client_car.png",
+                image: "/lovable-uploads/policiavehiculo.jpg",
+                imageClassName: "object-center",
                 badge: "Vehículo Propio",
                 badgeColor: "bg-[#5D6532]/10 text-[#5D6532]",
                 badgeDotColor: "bg-[#5D6532]",

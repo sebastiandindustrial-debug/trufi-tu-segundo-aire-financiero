@@ -17,6 +17,7 @@ export interface ShowcaseItem {
     checkColor: string; // e.g., "text-green-500 fill-green-50"
     buttonColor: string; // e.g., "bg-primary"
     buttonShadow: string; // e.g., "shadow-primary/25"
+    imageClassName?: string;
 }
 
 export interface ProductShowcaseProps {
@@ -202,7 +203,10 @@ const ProductShowcase = ({ defaultTab = "credito", data = defaultData, accentCol
                                                 <img
                                                     src={item.image}
                                                     alt={`${item.highlight} - TRUFI`}
-                                                    className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000"
+                                                    className={cn(
+                                                        "w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000",
+                                                        item.imageClassName
+                                                    )}
                                                 />
                                             </div>
                                         </div>

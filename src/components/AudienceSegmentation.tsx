@@ -74,7 +74,7 @@ const AudienceSegmentation = () => {
     const t = titulo.toLowerCase();
     if (t.includes("pensionado")) return "/lovable-uploads/pensionados_pie.jpg";
     if (t.includes("docente")) return "/lovable-uploads/docente.png";
-    if (t.includes("fuerza")) return "/lovable-uploads/fuerza_publica.png";
+    if (t.includes("fuerza")) return "/lovable-uploads/policia1.jpg";
     return "/lovable-uploads/pensionados_pie.jpg"; // Fallback por defecto
   };
 
